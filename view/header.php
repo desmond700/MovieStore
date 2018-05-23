@@ -41,7 +41,7 @@
     </section>
   </div>
   <div class="container-fluid px-0">
-    <nav class="d-flex flex-column navbar-light bg-light shadow-lg">
+    <nav class="d-flex flex-column fixed-top navbar-light bg-light shadow-lg">
       <div class="d-flex justify-content-center col-12 py-2 border-bottom" id="mobiLogo"></div>
       <div class="navbar-content d-flex justify-content-between">
         <div class="d-flex">
