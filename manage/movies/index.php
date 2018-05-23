@@ -12,15 +12,23 @@
     }
   }
 
-  if($action == "Home"){
-    include "view/home.php";
-  }else if($action == ""){
+  if($action == "List-movies"){
+    
+    include "list.php";
 
-  }else if($action == ""){
+  }else if($action == "Add-movies"){
 
-  }else if($action == ""){
+    include "add.php";
 
-  }else if($action == ""){
+  }else if($action == "Edit-movies"){
+
+    include "edit.php";
+
+  }else if($action == "Movie-Details"){
+
+    include "details.php";
+
+  }else if($action == "Delete-movies"){
 
   }
 ?>
