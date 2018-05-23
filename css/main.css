@@ -80,47 +80,42 @@
    margin-left: 50px;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-.rightimg {
-   height: 250px;
 
+/* Container needed to position the overlay. Adjust the width as needed */
+.img-overlay-container {
+  position: relative;
+  width: 50%;
+  max-width: 300px;
 }
 
-.soonbgimg{
-  background-image: url("https://i.ytimg.com/vi/I5N8GymdRio/maxresdefault.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+/* Make the image to responsive */
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.soonsmleftimg{
-  background-image: url("http://cdn-static.denofgeek.com/sites/denofgeek/files/2018/02/fallout.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+/* The overlay effect - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.7); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
 }
 
-.soonsmrightimg{
-  background-image: url("http://bestwatchbrandshq.com/wp-content/uploads/2018/04/Denzel-Washington-Watch-In-The-Equalizer-2-Movie.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+/* When you mouse over the container, fade in the overlay title */
+.img-overlay-container:hover .overlay {
+  opacity: 1;
 }
 
-.topleftimg{
-  background-image: url("http://s3-us-west-1.amazonaws.com/mediastinger/wp-content/uploads/2018/04/06152304/Rampage-2018-after-credits-hq.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.toprightimg{
-  background-image: url("http://cdn.wegotthiscovered.com/wp-content/uploads/2017/09/21082913_264370074054238_4920788646889854495_o.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.btrightimg{
-  background-image: url("https://cdn.vox-cdn.com/thumbor/Ttwwar-56OJ21pROmryNCbDEBKs=/0x0:1382x2048/1200x800/filters:focal(175x884:395x1104)/cdn.vox-cdn.com/uploads/chorus_image/image/59798029/deadpool_2_poster.0.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
