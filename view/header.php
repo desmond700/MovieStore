@@ -29,8 +29,8 @@
     </section>
     <section class="asideMenu">
       <h4 class="pl-3 ">Menu-</h4>
-      <a href="#">Home</a>
-      <a href="#">Movies</a>
+      <a href="./">Home</a>
+      <a href="./manage/movies/">Movies</a>
       <a href="#">Clients</a>
       <a href="#">Contact</a>
     </section>
