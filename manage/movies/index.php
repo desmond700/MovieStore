@@ -1,20 +1,20 @@
 <?php
-  require "model/database.php";
-  require "model/categorydb.php";
-  require "model/moviedb.php";
+  require "../../model/database.php";
+  //require "../../model/categorydb.php";
+  //require "../../model/moviedb.php";
 
 
   $action = filter_input(INPUT_POST, "action");
   if($action == NULL){
     $action = filter_input(INPUT_GET, "action");
     if($action == NULL){
-      $action = "Home";
+      $action = "List-movies";
     }
   }
 
   if($action == "List-movies"){
-    
-    include "list.php";
+
+    include "./list.php";
 
   }else if($action == "Add-movies"){
 
@@ -32,5 +32,3 @@
 
   }
 ?>
-
-<?php include "view/footer.php" ?>
