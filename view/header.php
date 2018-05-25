@@ -7,7 +7,7 @@
   <meta name="keywords" content="HD,Movies,Action,Drama,Comedy">
   <meta name="author" content="Desmond Wallace">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="/MovieStore/css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -17,7 +17,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="/MovieStore/js/main.js"></script>
 </head>
 <body>
   <div id="mySidenav" class="d-flex flex-column sidenav pt-0">
@@ -29,8 +29,8 @@
     </section>
     <section class="asideMenu">
       <h4 class="pl-3 ">Menu-</h4>
-      <a href="./">Home</a>
-      <a href="./manage/movies/">Movies</a>
+      <a href="/MovieStore/">Home</a>
+      <a href="/MovieStore/manage/movies/">Movies</a>
       <a href="#">Clients</a>
       <a href="#">Contact</a>
     </section>
@@ -88,11 +88,11 @@
                       <form class="form px-2">
                         <div class="form-group">
                           <label class=" font-weight-bold" for="exampleInputEmail1">Username:</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                          <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
                         </div>
                         <div class="form-group">
                           <label class=" font-weight-bold" for="exampleInputPassword1">Password:</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          <input type="password" class="form-control" placeholder="Password">
                         </div>
                         <p><a href="#">forgot password?</a></p>
                         <button type="submit" class="btn btn-primary float-right">Log in</button>
@@ -110,19 +110,19 @@
                       <form class="form px-2">
                         <div class="form-group">
                           <label class=" font-weight-bold" for="exampleInputEmail1">Username:</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
+                          <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter username">
                         </div>
                         <div class="form-group">
                           <label class=" font-weight-bold" for="exampleInputEmail1">Email:</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                          <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
                         </div>
                         <div class="form-group">
                           <label class=" font-weight-bold" for="exampleInputPassword1">Password:</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          <input type="password" class="form-control" placeholder="Password">
                         </div>
                         <div class="form-group">
                           <label class=" font-weight-bold" for="exampleInputPassword1">Confirm password:</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          <input type="password" class="form-control" placeholder="Password">
                         </div>
                         <button type="submit" class="btn btn-primary float-right">Sign up</button>
                       </form>
