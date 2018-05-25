@@ -31,11 +31,9 @@
       <h4 class="pl-3 ">Menu-</h4>
       <a href="/MovieStore/">Home</a>
       <a href="/MovieStore/manage/movies/">Movies</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
     </section>
 
-    <section class="mt-5">
+    <section class="mt-3">
       <h4 class="pl-3 ">Favourites-</h4>
 
     </section>
@@ -51,7 +49,7 @@
            <div class="bar3"></div>
           </div>
           <div class="d-flex mr-2" id="logoCln">
-            <a href="" class="d-flex my-auto logo">
+            <a href="/MovieStore/" class="d-flex my-auto logo">
               <i class="fa fa-film text-primary my-auto" style="font-size:32px"></i>
               <span class="my-auto text-secondary" style="font-size:32px">MovieStore</span>
             </a>
