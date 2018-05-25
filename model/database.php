@@ -5,7 +5,6 @@
 
     try{
       $db = new PDO($dsn, $username, $password);
-      echo "Database connection successful.";
     }catch(PDOExeception $e){
       $error_message = $e->getMessage();
       include("../error/database_error.php");
