@@ -1,7 +1,7 @@
 /* css document */
 
 .menu {
-    z-index: 9999;
+    z-index: 2000;
     display: inline-block;
     cursor: pointer;
 }
@@ -46,7 +46,7 @@
    height: 100%; /* 100% Full-height */
    width: 0; /* 0 width - change this with JavaScript */
    position: fixed; /* Stay in place */
-   z-index: 1; /* Stay on top */
+   z-index: 1500; /* Stay on top */
    top: 0; /* Stay at the top */
    left: 0;
    background-color: #fff; /* White*/
@@ -107,7 +107,7 @@
   opacity:0;
   color: white;
   font-size: 20px;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
 }
 
