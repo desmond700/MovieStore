@@ -23,7 +23,7 @@
 
     include ("edit.php");
 
-  }else if($action == "movie_detail"){
+  }else if($action == "movie_details"){
 
     include ("details.php");
 
