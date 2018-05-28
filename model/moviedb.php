@@ -32,6 +32,69 @@
     }
 
     //**************************//
+    //** Get a movie by id **//
+    //**************************//
+    function get_a_movie_by_id($id){
+      global $db;
+      $query = 'SELECT *
+                FROM film
+                WHERE Film_id = :id';
+      $statement = $db->prepare($query);
+      $statement->bindValue(":id", $id);
+      $statement->execute();
+      $movie = $statement->fetch();
+      $statement->closeCursor();
+      return $movie;
+    }
+
+    //**************************//
+    //** Get actors by film_id **//
+    //**************************//
+    function get_actors_by_film_id($id){
+      global $db;
+      $query = 'SELECT *
+                FROM actor
+                INNER JOIN actor_film ON actor_film.Actor_id = actor.Actor_id
+                INNER JOIN film ON film.Film_id = actor_film.Film_id
+                WHERE film.Film_id = :id';
+      $statement = $db->prepare($query);
+      $statement->bindValue(":id", $id);
+      $statement->execute();
+      $movie = $statement->fetchAll();
+      $statement->closeCursor();
+      return $movie;
+    }
+
+
+    //************************************//
+    //** Get column names of film table **//
+    //************************************//
+    function get_film_column_names(){
+      global $db;
+
+      $statement = $db->prepare("SHOW COLUMNS FROM film");
+      try {
+            if($statement->execute()){
+                $raw_column_data = $statement->fetchAll();
+
+                foreach($raw_column_data as $outer_key => $array){
+                    foreach($array as $inner_key => $value){
+
+                        if ($inner_key === 'Field'){
+                                if (!(int)$inner_key){
+                                    $column_names[] = $value;
+                                }
+                            }
+                    }
+                }
+            }
+            return $column_names;
+        } catch (Exception $e){
+                return $e->getMessage(); //return exception
+        }
+    }
+
+    //**************************//
     //** Get number of movies **//
     //**************************//
     function get_movies_count(){

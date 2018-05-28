@@ -21,10 +21,6 @@
             <label class="col-sm-4 col-md-3 pl-0">Characters:&nbsp;</label>
             <input class="form-control form-control-sm" type="text" name="characters" placeholder="Enter Characters's name">
           </div>
-          <div class="d-flex form-group" id="directorInput">
-            <label class="col-sm-4 col-md-3 pl-0">Director/s:&nbsp;</label>
-            <input class="form-control form-control-sm" type="text" name="directors" placeholder="Enter Director's first and last names">
-          </div>
           <div class="d-flex form-group">
             <label class="col-sm-4 col-md-3 pl-0">Description:&nbsp;</label>
             <input class="form-control form-control-sm" type="text" name="overview" placeholder="Enter Movie's overview">
@@ -48,6 +44,10 @@
           <div class="d-flex form-group">
             <label class="col-sm-4 col-md-3 pl-0">Rating:&nbsp;</label>
             <input class="form-control form-control-sm" type="text" name="rating" placeholder="Enter Movie's rating">
+          </div>
+          <div class="d-flex form-group">
+            <label class="col-sm-4 col-md-3 pl-0">Overview:&nbsp;</label>
+            <textarea class="form-control form-control-sm" cols="40" rows="8" name="overview"></textarea>
           </div>
           <div class="">
             <label for="">Select poster to upload:</label>

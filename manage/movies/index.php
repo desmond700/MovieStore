@@ -48,11 +48,20 @@
     include ("./add.php");
 
   }else if($action == "edit_movie"){
+    if(filter_input(INPUT_GET, 'filmid') != NULL){
+      $film_id = filter_input(INPUT_GET, 'filmid');
+      $movie = get_a_movie_by_id($film_id);
+      $columns = get_film_column_names();
+    }
 
     include ("edit.php");
 
   }else if($action == "movie_details"){
-
+    if(filter_input(INPUT_GET, 'filmid') != NULL){
+      $film_id = filter_input(INPUT_GET, 'filmid');
+      $movie = get_a_movie_by_id($film_id);
+      $actors = get_actors_by_film_id($film_id);
+    }
     include ("details.php");
 
   }else if($action == "delete_movie"){
