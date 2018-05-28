@@ -1,7 +1,7 @@
 <!Doctype html>
 <html>
 <head>
-  <title> - MovieStore inc.</title>
+  <title><?php echo $pageTitle ?> - MovieStore inc.</title>
   <meta charset="UTF-8">
   <meta name="description" content="The most up to date Movie Repository">
   <meta name="keywords" content="HD,Movies,Action,Drama,Comedy">
@@ -21,9 +21,10 @@
 </head>
 <body>
   <div id="mySidenav" class="d-flex flex-column sidenav pt-0">
-    <section class="">
-      <a href="" class="d-flex my-auto float-right">
-        <i class="fa fa-film text-primary my-auto" style="font-size:32px"></i>
+    <section class="d-flex">
+      <a href="javascript:void(0)" class="closebtn d-flex my-auto py-0" onclick="closeNav()">x</a>
+      <a href="/MovieStore/" class="d-flex my-auto ml-auto">
+        <i class="fa fa-film text-primary my-auto ml-auto" style="font-size:32px"></i>
         <span class="my-auto" style="font-size:32px">MovieStore</span>
       </a>
     </section>
@@ -43,7 +44,7 @@
       <div class="d-flex justify-content-center col-12 py-2 border-bottom" id="mobiLogo"></div>
       <div class="navbar-content d-flex justify-content-between">
         <div class="d-flex">
-          <div class="menu my-auto px-3" onclick="myFunction(this);toggleSideBar()">
+          <div class="menu my-auto px-3" onclick="openNav()">
            <div class="bar1"></div>
            <div class="bar2"></div>
            <div class="bar3"></div>
