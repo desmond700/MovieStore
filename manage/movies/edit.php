@@ -1,3 +1,4 @@
+<?php $pageTitle = "Edit Movie" ?>
 <?php include "../../view/header.php"; ?>
   <section style="margin-top: 5em">
     <div class="container">

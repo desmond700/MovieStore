@@ -12,10 +12,38 @@
 
 
   if($action == "list_movies"){
-    $movies = get_movies();
+    $title = filter_input(INPUT_GET, 'title');
+    $genre = filter_input(INPUT_GET, 'genre_id');
+    if($title != NULL || $genre != NULL) {
+      if($title != NULL){
+        $movies = get_by_title($title);
+      }
+      if($genre != NULL){
+        $movies = get_by_genre($genre);
+      }
+    }
+    else{
+      $movies = get_movies();
+    }
+
     include ("./list.php");
 
   }else if($action == "add_movie"){
+
+    if(isset($_POST['title'])){
+      $title = $_POST['title'];
+      $run_time = $_POST['runtime'];
+      $release_date = $_POST['releasedate'];
+      $rating = $_POST['rating'];
+      $price = $_POST['price'];
+      $overview = $_POST['overview'];
+      $image_name = basename($_FILES["fileToUpload"]["name"]);
+      $actors = $_POST['actors'];
+      $directors = $_POST['directors'];
+      $genres = $_POST['genres'];
+      $characters = $_POST['characters'];
+      add_movie($title,$run_time,$release_date,$rating,$price,$overview,$image_name,$actors,$directors,$genres,$characters);
+    }
 
     include ("./add.php");
 

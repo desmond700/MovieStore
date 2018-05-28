@@ -1,3 +1,4 @@
+<?php $pageTitle = "List Movies" ?>
 <?php include ("../../view/header.php"); ?>
   <section style="margin-top: 5em">
 
@@ -13,22 +14,22 @@
       <div class="d-flex col-md-12 justify-content-between py-4 px-0">
         <div class="d-flex w-25">
           <label class="my-auto">Genre:&nbsp;</label>
-          <select class="form-control">
+          <select name="sectionid" class="form-control" onchange="window.location.href = this.value">" >
               <option value="">All</option>
               <?php $genres = get_genres();  foreach ($genres as $genre) : ?>
-                  <option value=<?php echo $genre["Genre_id"] ?>><?php echo $genre["Genre"] ?></option>
+                  <option value="?genre_id=<?php echo $genre["Genre_id"] ?>"><?php echo $genre["Genre"] ?></option>
               <?php endforeach;?>
           </select>
         </div>
-        <form class="d-flex w-25" action="" method="post">
+        <form class="d-flex w-25" action="<?php if(isset($_POST["title"]))echo $_POST["title"] ?>">
           <label class="my-auto">Title:&nbsp;</label>
-          <input type="text" class="form-control" name="" value="">
+          <input type="text" class="form-control" name="title" value="">
           <input type="submit" class="btn btn-outline-light text-dark ml-2" name="" value="filter">
         </form>
         <p class="my-auto">Entries: <span class=""><?php echo get_movies_count() ?></span></p>
         <a class="my-auto" href="?action=add_movie">Add movie</a>
       </div>
-      <div class="row mx-0">
+      <div class="row mx-0" id="list">
         <?php foreach ($movies as $movie) : ?>
           <div class="d-flex col-md-12 border mb-2 px-0 py-3">
             <div class="col-md-3">
@@ -48,6 +49,7 @@
             </div>
             <div class="col-md-1">
               <h4>Rating</h4>
+              <p class=""><?php echo $movie["Rating"] ?></p>
             </div>
             <div class="d-flex col-md-3 justify-content-end">
               <h4></h4>
