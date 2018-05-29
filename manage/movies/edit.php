@@ -16,11 +16,11 @@
           </div>
           <div class="d-flex form-group">
             <label class="col-sm-4 col-md-3 pl-0">Actors/Actresses:&nbsp;</label>
-            <input class="form-control form-control-sm" type="text" name="actors" value="<?php echo $movie["Title"] ?>">
+            <input class="form-control form-control-sm" type="text" name="actors" value="<?php echo $actors ?>">
           </div>
           <div class="d-flex form-group">
             <label class="col-sm-4 col-md-3 pl-0">Characters:&nbsp;</label>
-            <input class="form-control form-control-sm" type="text" name="characters" value="<?php echo $movie["Title"] ?>">
+            <input class="form-control form-control-sm" type="text" name="characters" value="<?php echo $characters ?>">
           </div>
           <div class="d-flex form-group" id="directorInput">
             <label class="col-sm-4 col-md-3 pl-0">Director/s:&nbsp;</label>
@@ -32,7 +32,7 @@
           </div>
           <div class="d-flex form-group">
             <label class="col-sm-4 col-md-3 pl-0">Genre/s:&nbsp;</label>
-            <input class="form-control form-control-sm" type="text" name="genres" value="<?php echo $movie["Title"] ?>">
+            <input class="form-control form-control-sm" type="text" name="genres" value="<?php echo $genres ?>">
           </div>
           <div class="d-flex form-group">
             <label class="col-sm-4 col-md-3 pl-0">Release Date:&nbsp;</label>
