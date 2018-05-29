@@ -75,12 +75,9 @@
       $statement = $db->prepare($query);
       $statement->bindValue(":id", $id);
       $statement->execute();
-      $movie = $statement->fetchAll();
-      foreach ($movie as $key => $value) {
-        $names .= $value["FirstName"]." ".$value["LastName"].", ";
-      }
+      $actors = $statement->fetchAll();
       $statement->closeCursor();
-      return $names;
+      return $actors;
     }
 
     //***************************//
@@ -119,12 +116,8 @@
       $statement->bindValue(":id", $id);
       $statement->execute();
       $genre = $statement->fetchAll();
-      $names = "";
-      foreach ($genre as $key => $value) {
-        $names .= $value["Name"].", ";
-      }
       $statement->closeCursor();
-      return $names;
+      return $genre;
     }
 
     //************************************//
@@ -286,9 +279,9 @@
 
       $film_id = add_film($title,$run_time,$release_date,$rating,$price,$overview,$image_name);
       $actorArray = explode(",",$actors);
-      $genreArray = array_filter(explode(",",$genres));
+      $genreArray = explode(",",$genres);
       $directorArray = explode(",",$directors);
-      $characterArray = array_filter(explode(",",$characters));
+      $characterArray = explode(",",$characters);
 
       //Insert Actors
       foreach($actorArray as $actor){
@@ -304,10 +297,10 @@
         foreach($characterArray as $character){
           $characte_id = get_character_id($character);
           if($characte_id != NULL){
-            add_character_film($characte_id,$actor_id,$film_id);
+            add_character_film($characte_id,$film_id,$actor_id);
           }else {
             $characte_id = add_character($character);
-            add_character_film($characte_id,$actor_id,$film_id);
+            add_character_film($characte_id,$film_id,$actor_id);
           }
         }
       }
@@ -422,14 +415,15 @@
       $statement->closeCursor();
     }
 
-    function add_character_film($character_id,$actor_id,$film_id){
+    function add_character_film($character_id,$film_id,$actor_id){
       global $db;
       $query = 'INSERT INTO charactr_film(Character_id, Film_id, Actor_id)
-                VALUES(:character_id, :actor_id, :film_id)';
+                VALUES(:character_id, :film_id, :actor_id)';
       $statement = $db->prepare($query);
       $statement->bindValue(":character_id", $character_id);
-      $statement->bindValue(":actor_id", $actor_id);
       $statement->bindValue(":film_id", $film_id);
+      $statement->bindValue(":actor_id", $actor_id);
+
       $statement->execute();
       $statement->closeCursor();
     }
