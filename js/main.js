@@ -2,6 +2,9 @@
 
 $(function(){
 
+  $( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" }).val();
+
+
   $("button#mobilSrch").hide();
 
   var logo = jQuery('#logoCln').clone();
