@@ -65,6 +65,67 @@
       return $movie;
     }
 
+    function get_actors_names_by_film_id($id){
+      global $db;
+      $query = 'SELECT FirstName, LastName
+                FROM actor
+                INNER JOIN actor_film ON actor_film.Actor_id = actor.Actor_id
+                INNER JOIN film ON film.Film_id = actor_film.Film_id
+                WHERE film.Film_id = :id';
+      $statement = $db->prepare($query);
+      $statement->bindValue(":id", $id);
+      $statement->execute();
+      $movie = $statement->fetchAll();
+      foreach ($movie as $key => $value) {
+        $names .= $value["FirstName"]." ".$value["LastName"].", ";
+      }
+      $statement->closeCursor();
+      return $names;
+    }
+
+    //***************************//
+    //** Get genres by film_id **//
+    //***************************//
+    function get_genres_by_film_id($id){
+      global $db;
+      $query = 'SELECT *
+                FROM genre
+                INNER JOIN genre_film ON genre_film.Genre_id = genre.Genre_id
+                INNER JOIN film ON film.Film_id = genre_film.Film_id
+                WHERE film.Film_id = :id';
+      $statement = $db->prepare($query);
+      $statement->bindValue(":id", $id);
+      $statement->execute();
+      $genre = $statement->fetchAll();
+      $names = "";
+      foreach ($genre as $key => $value) {
+        $names .= $value["Genre"].", ";
+      }
+      $statement->closeCursor();
+      return $names;
+    }
+
+    //***************************//
+    //** Get characters by film_id **//
+    //***************************//
+    function get_characters_by_film_id($id){
+      global $db;
+      $query = 'SELECT *
+                FROM charactr
+                INNER JOIN charactr_film ON charactr_film.Character_id = charactr.Character_id
+                INNER JOIN film ON film.Film_id = charactr_film.Film_id
+                WHERE film.Film_id = :id';
+      $statement = $db->prepare($query);
+      $statement->bindValue(":id", $id);
+      $statement->execute();
+      $genre = $statement->fetchAll();
+      $names = "";
+      foreach ($genre as $key => $value) {
+        $names .= $value["Name"].", ";
+      }
+      $statement->closeCursor();
+      return $names;
+    }
 
     //************************************//
     //** Get column names of film table **//

@@ -52,6 +52,9 @@
       $film_id = filter_input(INPUT_GET, 'filmid');
       $movie = get_a_movie_by_id($film_id);
       $columns = get_film_column_names();
+      $actors = get_actors_names_by_film_id($film_id);
+      $genres = get_genres_by_film_id($film_id);
+      $characters = get_characters_by_film_id($film_id);
     }
 
     include ("edit.php");
@@ -61,6 +64,7 @@
       $film_id = filter_input(INPUT_GET, 'filmid');
       $movie = get_a_movie_by_id($film_id);
       $actors = get_actors_by_film_id($film_id);
+      $genres = get_genres_by_film_id($film_id);
     }
     include ("details.php");
 
