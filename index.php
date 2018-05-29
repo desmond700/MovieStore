@@ -1,5 +1,6 @@
 <?php require ("model/database.php"); ?>
 <?php require ("model/moviedb.php"); ?>
+<?php $pageTitle = "Home" ?>
 <?php include ("view/header.php"); ?>
     <div class="bg-dark py-4" style="margin-top:4em">
       <div class="container">
