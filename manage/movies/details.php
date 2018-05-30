@@ -33,7 +33,7 @@
               <?php foreach($actors as $results) : ?>
                 <div class="col-md-2">
                   <div class="card">
-                    <img src="/MovieStore/images/actors/<?php echo $results["img"] ?>" height="200" alt="">
+                    <img class="img-fluid" src="/MovieStore/images/actors/<?php echo $results["img"] ?>" alt="">
                     <div class="card-body">
                       <p><?php echo $results["FirstName"] . " " . $results["LastName"] ?></p>
                     </div>
