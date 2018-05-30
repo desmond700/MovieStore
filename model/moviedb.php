@@ -215,16 +215,16 @@
     //***************************************//
     function get_actor_id($fname, $lname){
       global $db;
-      $stmt = $db->prepare("CALL actorProc(:fname,:lname,@p2)");
-      $stmt->bindParam(":fname", $fname, PDO::PARAM_STR);
-      $stmt->bindParam(":lname", $lname, PDO::PARAM_STR);
+      $statement = $db->prepare("CALL actorProc(:fname,:lname,@p2)");
+      $statement->bindParam(":fname", $fname, PDO::PARAM_STR);
+      $statement->bindParam(":lname", $lname, PDO::PARAM_STR);
 
       // call the stored procedure
-      $stmt->execute();
+      $statement->execute();
 
       $row = $db->query("SELECT @p2 AS id")->fetch(PDO::FETCH_ASSOC);
       $id = $row["id"];
-      return ($id != false) ? $id : NULL;
+      return $id;
     }
 
     //***************************************//
@@ -232,31 +232,31 @@
     //***************************************//
     function get_genre_id($name){
       global $db;
-      $stmt = $db->prepare("CALL genreProc(:name,@p1)");
-      $stmt->bindParam(":name", $name, PDO::PARAM_STR);
+      $statement = $db->prepare("CALL genreProc(:name, @p1)");
+      $statement->bindParam(":name", $name, PDO::PARAM_STR);
 
       // call the stored procedure
-      $stmt->execute();
+      $statement->execute();
 
       $row = $db->query("SELECT @p1 AS id")->fetch(PDO::FETCH_ASSOC);
       $id = $row["id"];
-      return ($id != false) ? $id : NULL;
+      return $id;
     }
 
     //******************************************//
     //** Get director id via stored procedure **//
     //******************************************//
-    function get_director_id($name){
+    function get_director_id($fname,$lname){
       global $db;
-      $stmt = $db->prepare("CALL genreProc(:name,@p1)");
-      $stmt->bindParam(":name", $name, PDO::PARAM_STR);
-
+      $stmt = $db->prepare("CALL directorProc(:fname,:lname, @p2)");
+      $stmt->bindParam(":fname", $fname, PDO::PARAM_STR);
+      $stmt->bindParam(":lname", $lname, PDO::PARAM_STR);
       // call the stored procedure
       $stmt->execute();
 
-      $row = $db->query("SELECT @p1 AS id")->fetch(PDO::FETCH_ASSOC);
+      $row = $db->query("SELECT @p2 AS id")->fetch(PDO::FETCH_ASSOC);
       $id = $row["id"];
-      return ($id != false) ? $id : NULL;
+      return $id;
     }
 
     //*******************************************//
@@ -271,37 +271,36 @@
       $row = $db->query("SELECT @p1 AS id")->fetch(PDO::FETCH_ASSOC);
       $id = $row["id"];
 
-      return ($id != false) ? $id : NULL;
+      return $id;
     }
 
     function add_movie($title,$run_time,$release_date,$rating,$price,$overview,$image_name,$actors,$directors,$genres,$characters){
       global $db;
 
       $film_id = add_film($title,$run_time,$release_date,$rating,$price,$overview,$image_name);
-      $actorArray = explode(",",$actors);
       $genreArray = explode(",",$genres);
       $directorArray = explode(",",$directors);
-      $characterArray = explode(",",$characters);
-
+      $actorlength = count($actors);
       //Insert Actors
-      foreach($actorArray as $actor){
-        $actornames = explode(" ",$actor);
+      for($i = 0; $i < $actorlength; ++$i){
+        $actornames = explode(" ",$actors[$i]);
+
+        if(empty($actornames[0]) || empty($actornames[1]))continue;
+
         $actor_id = get_actor_id($actornames[0],$actornames[1]);
-        if($actor_id != NULL){
+        if(is_numeric($actor_id)){
           add_actor_film($film_id,$actor_id);
         }else {
           $actor_id = add_actor($actornames[0],$actornames[1]);
           add_actor_film($film_id,$actor_id);
         }
         //Insert Characters
-        foreach($characterArray as $character){
-          $characte_id = get_character_id($character);
-          if($characte_id != NULL){
-            add_character_film($characte_id,$film_id,$actor_id);
-          }else {
-            $characte_id = add_character($character);
-            add_character_film($characte_id,$film_id,$actor_id);
-          }
+        $characte_id = get_character_id($characters[$i]);
+        if(is_numeric($characte_id)){
+          add_character_film($characte_id,$film_id,$actor_id);
+        }else {
+          $characte_id = add_character($characters[$i]);
+          add_character_film($characte_id,$film_id,$actor_id);
         }
       }
 
@@ -314,9 +313,10 @@
       //Insert Director/s
       foreach($directorArray as $director){
         $directornames = explode(" ",$director);
+        if(empty($directornames[0]) || empty($directornames[1]))continue;
         $director_id = get_director_id($directornames[0],$directornames[1]);
 
-        if($director_id != NULL){
+        if(is_numeric($director_id)){
           add_director_film($director_id,$film_id);
         }else {
           $director_id = add_director($directornames[0],$directornames[1]);
@@ -423,10 +423,12 @@
       $statement->bindValue(":character_id", $character_id);
       $statement->bindValue(":film_id", $film_id);
       $statement->bindValue(":actor_id", $actor_id);
-
       $statement->execute();
       $statement->closeCursor();
     }
 
+
+    // Update information
+    
 
 ?>

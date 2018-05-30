@@ -2,10 +2,7 @@
 <?php include "../../view/header.php"; ?>
   <main class="mb-4" style="margin-top: 5em">
     <div class="container">
-      <h1>Add movie</h1>
-      <?php //foreach($actors as $actor) : ?>
-        <p><?php echo $_POST['actors'][2] ?></p>
-      <?php //endforeach ?>
+      <h1>Add movie</h1><?php echo "Genre_id: ".$genre[2] ?>
       <hr>
       <div class="border px-4 py-4">
         <form class="col-md-8" action="?action=add_movie" method="post" enctype="multipart/form-data">
@@ -37,7 +34,7 @@
           </div>
           <div class="d-flex form-group">
             <label class="col-sm-4 col-md-3 pl-0">Genre/s:&nbsp;</label>
-            <select name="sectionid" class="form-control">" >
+            <select name="genres[]" class="form-control" multiple>
                 <option value="">--Select a genre</option>
                 <?php $genresResults = get_genres();  foreach ($genresResults as $genre) : ?>
                     <option value="<?php echo $genre["Genre"] ?>"><?php echo $genre["Genre"] ?></option>

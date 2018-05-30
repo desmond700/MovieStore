@@ -30,21 +30,21 @@
 
   }else if($action == "add_movie"){
 
-    if(isset($_POST['title'])){
-      /*$title = $_POST['title'];
+    /*if(isset($_POST['title'])){
+      $title = $_POST['title'];
       $run_time = $_POST['runtime'];
       $release_date = $_POST['releasedate'];
       $rating = $_POST['rating'];
       $price = $_POST['price'];
       $overview = $_POST['overview'];
       $image_name = basename($_FILES["fileToUpload"]["name"]);
-      $actors = $_POST['actors'];
+      $actors = $_REQUEST['actors'];
       $directors = $_POST['directors'];
       $genres = $_POST['genres'];
-      $characters = $_POST['characters'];
-      add_movie($title,$run_time,$release_date,$rating,$price,$overview,$image_name,$actors,$directors,$genres,$characters);*/
-    }
-    //$actors = $_POST['actors'];
+      $characters = $_REQUEST['characters'];
+      add_movie($title,$run_time,$release_date,$rating,$price,$overview,$image_name,$actors,$directors,$genres,$characters);
+    }*/
+    
     include ("./add.php");
 
   }else if($action == "edit_movie"){
