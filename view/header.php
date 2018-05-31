@@ -27,7 +27,16 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-body"></div>
+      <div class="modal-body">
+        <div id="tabs">
+          <ul class="bg-white border-0">
+            <li class="border-bottom"><a href="#tabs-1">User</a></li>
+            <li class="border-bottom"><a href="#tabs-2">Admin</a></li>
+          </ul>
+          <div id="tabs-1"></div>
+          <div id="tabs-2"></div>
+        </div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
