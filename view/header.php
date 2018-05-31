@@ -22,6 +22,20 @@
   <script src="/MovieStore/js/main.js"></script>
 </head>
 <body>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <div id="mySidenav" class="d-flex flex-column sidenav pt-0">
     <section class="d-flex">
       <a href="javascript:void(0)" class="closebtn d-flex my-auto py-0" onclick="closeNav()">x</a>
@@ -73,70 +87,67 @@
             </a>
           </div>
           <div class="d-flex border-left border-right">
-            <div class="dropdown my-auto h-100">
-              <button class="btn btn-light dropdown-toggle h-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Account
-              </button>
-              <div class="dropdown-menu dropdown-menu-right px-2" aria-labelledby="dropdownMenuButton">
-                <div class="d-flex">
-                  <div class="dropdown my-auto h-100">
-                    <button class="btn btn-light dropdown-toggle h-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      login
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right px-2" aria-labelledby="dropdownMenuButton" style="min-width:300px">
-                      <h4 class="text-center font-weight-bold">Log in</h4>
-                      <hr>
-                      <form class="form px-2">
-                        <div class="form-group">
-                          <label class=" font-weight-bold" for="exampleInputEmail1">Username:</label>
-                          <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                          <label class=" font-weight-bold" for="exampleInputPassword1">Password:</label>
-                          <input type="password" class="form-control" placeholder="Password">
-                        </div>
-                        <p><a href="#">forgot password?</a></p>
-                        <button type="submit" class="btn btn-primary float-right">Log in</button>
-                      </form>
-                    </div>
+          <div class="dropdown d-flex flex-column">
+            <button class="btn btn-light dropdown-toggle h-100 pb-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="d-flex flex-column">
+                <i class="fa fa-user-circle mx-auto" style="font-size:28px"></i>
+                <span class="my-auto">guest</span>
+              </div>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right px-2" aria-labelledby="dropdownMenuButton">
+              <div class="d-flex">
+                <div class="dropdown my-auto h-100">
+                  <button class="btn btn-light h-100" type="button" id="dropdownMenuButton" data-toggle="modal" data-target="#exampleModal" data-whatever="login">
+                    login
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right px-2" aria-labelledby="dropdownMenuButton" style="min-width:300px">
+                    <h4 class="text-center font-weight-bold">Log in</h4>
+                    <hr>
+                    <form class="form px-2">
+                      <div class="form-group">
+                        <label class=" font-weight-bold" for="exampleInputEmail1">Username:</label>
+                        <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label class=" font-weight-bold" for="exampleInputPassword1">Password:</label>
+                        <input type="password" class="form-control" placeholder="Password">
+                      </div>
+                      <p><a href="#">forgot password?</a></p>
+                      <button type="submit" class="btn btn-primary float-right">Log in</button>
+                    </form>
                   </div>
+                </div>
 
-                  <div class="dropdown my-auto h-100">
-                    <button class="btn btn-light dropdown-toggle h-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      signup
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right px-2" aria-labelledby="dropdownMenuButton" style="min-width:300px">
-                      <h4 class="text-center font-weight-bold">Sign Up</h4>
-                      <hr>
-                      <form class="form px-2">
-                        <div class="form-group">
-                          <label class=" font-weight-bold" for="exampleInputEmail1">Username:</label>
-                          <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter username">
-                        </div>
-                        <div class="form-group">
-                          <label class=" font-weight-bold" for="exampleInputEmail1">Email:</label>
-                          <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                          <label class=" font-weight-bold" for="exampleInputPassword1">Password:</label>
-                          <input type="password" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                          <label class=" font-weight-bold" for="exampleInputPassword1">Confirm password:</label>
-                          <input type="password" class="form-control" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-primary float-right">Sign up</button>
-                      </form>
-                    </div>
+                <div class="dropdown my-auto h-100">
+                  <button class="btn btn-light h-100" type="button" id="dropdownMenuButton" data-toggle="modal" data-target="#exampleModal" data-whatever="signup">
+                    signup
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right px-2" aria-labelledby="dropdownMenuButton" style="min-width:300px">
+                    <h4 class="text-center font-weight-bold">Sign Up</h4>
+                    <hr>
+                    <form class="form px-2">
+                      <div class="form-group">
+                        <label class=" font-weight-bold" for="exampleInputEmail1">Username:</label>
+                        <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter username">
+                      </div>
+                      <div class="form-group">
+                        <label class=" font-weight-bold" for="exampleInputEmail1">Email:</label>
+                        <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label class=" font-weight-bold" for="exampleInputPassword1">Password:</label>
+                        <input type="password" class="form-control" placeholder="Password">
+                      </div>
+                      <div class="form-group">
+                        <label class=" font-weight-bold" for="exampleInputPassword1">Confirm password:</label>
+                        <input type="password" class="form-control" placeholder="Password">
+                      </div>
+                      <button type="submit" class="btn btn-primary float-right">Sign up</button>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
-
-          </div>
-          <div class="d-flex flex-column px-2 px-lg-3 py-2">
-            <i class="fa fa-user-circle mx-auto my-auto" style="font-size:28px"></i>
-            <span>guest</span>
           </div>
         </div>
       </div>
