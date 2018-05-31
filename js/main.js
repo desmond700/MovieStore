@@ -30,22 +30,41 @@ $(function(){
     var modal = $(this);
     //alert(recipient);
     if(recipient === "login"){
-      var avatar = $("<i class='fa fa-user-circle text-success'></i>");
-      var imgdiv = $("<div class='imgcontainer my-0' style='font-size:110px'></div>").append(avatar);
-      var namelabel = $("<label class='d-flex align-items-center' for='uname'><b>Username: </b></label>")
-      var nameinput = $("<input class='form-control form-control-sm py-0' type='text' placeholder='Enter Username' style='line-height:6px' name='uname' required />")
-      var formgroup1 = $("<div class='d-flex form-group'></div>").append(namelabel,nameinput);
-      var passlabel = $("<label class='d-flex align-items-center' for='psw'><b>Password: </b></label>")
-      var passinput = $("<input class='form-control form-control-sm py-0' type='password' placeholder='Enter Password' name='uname' required />")
-      var formgroup2 = $("<div class='d-flex form-group'></div>").append(passlabel,passinput);
-      var loginbtn = $("<button type='submit'>Login</button>");
-      var rempassinput = $("<input type='checkbox' checked='checked' name='remember'> <span>Remember me</span>");
-      var rempassspan = $("<span class='psw pt-4'>Forgot <a href='#'>password?</a></span>");
-      var label = $("<label class='pt-4'></label>").append(rempassinput);
-      var flexdiv = $("<div class='d-flex justify-content-between'></div>").append(label,rempassspan);
-      var contdiv = $("<div class='container'></div>").append(formgroup1,formgroup2,loginbtn,flexdiv);
-      var form = $("<form class='modal-content animate my-auto' action='/action_page.php'></form>").append(imgdiv,contdiv);
-      modal.find('.modal-body').html(form)
+      // Customer login
+      var cusavatar = $("<i class='fa fa-user-circle text-success'></i>");
+      var cusimgdiv = $("<div class='imgcontainer my-0' style='font-size:110px'></div>").append(cusavatar);
+      var cusnamelabel = $("<label class='d-flex align-items-center' for='uname'><b>Username: </b></label>")
+      var cusnameinput = $("<input class='form-control form-control-sm py-0' type='text' placeholder='Enter Username' style='line-height:6px' name='uname' required />")
+      var cusformgroup1 = $("<div class='d-flex form-group'></div>").append(cusnamelabel,cusnameinput);
+      var cuspasslabel = $("<label class='d-flex align-items-center' for='psw'><b>Password: </b></label>")
+      var cuspassinput = $("<input class='form-control form-control-sm py-0' type='password' placeholder='Enter Password' name='uname' required />")
+      var cusformgroup2 = $("<div class='d-flex form-group'></div>").append(cuspasslabel,cuspassinput);
+      var cusloginbtn = $("<button type='submit'>Login</button>");
+      var cusrempassinput = $("<input type='checkbox' checked='checked' name='remember'> <span>Remember me</span>");
+      var cusrempassspan = $("<span class='psw pt-4'>Forgot <a href='#'>password?</a></span>");
+      var cuslabel = $("<label class='pt-4'></label>").append(cusrempassinput);
+      var cusflexdiv = $("<div class='d-flex justify-content-between'></div>").append(cuslabel,cusrempassspan);
+      var cuscontdiv = $("<div class='container'></div>").append(cusformgroup1,cusformgroup2,cusloginbtn,cusflexdiv);
+      var cusform = $("<form class='modal-content animate my-auto' action='/MovieStore/model/logindb?type=cust'></form>").append(cusimgdiv,cuscontdiv);
+      modal.find('#tabs-1').append(cusform);
+      // Admin login
+      var adminavatar = $("<i class='fa fa-user-circle text-success'></i>");
+      var adminimgdiv = $("<div class='imgcontainer my-0' style='font-size:110px'></div>").append(adminavatar);
+      var adminnamelabel = $("<label class='d-flex align-items-center' for='uname'><b>Username: </b></label>")
+      var adminnameinput = $("<input class='form-control form-control-sm py-0' type='text' placeholder='Enter Username' style='line-height:6px' name='uname' required />")
+      var adminformgroup1 = $("<div class='d-flex form-group'></div>").append(adminnamelabel,adminnameinput);
+      var adminpasslabel = $("<label class='d-flex align-items-center' for='psw'><b>Password: </b></label>")
+      var adminpassinput = $("<input class='form-control form-control-sm py-0' type='password' placeholder='Enter Password' name='uname' required />")
+      var adminformgroup2 = $("<div class='d-flex form-group'></div>").append(adminpasslabel,adminpassinput);
+      var adminloginbtn = $("<button type='submit'>Login</button>");
+      var adminrempassinput = $("<input type='checkbox' checked='checked' name='remember'> <span>Remember me</span>");
+      var adminrempassspan = $("<span class='psw pt-4'>Forgot <a href='#'>password?</a></span>");
+      var adminlabel = $("<label class='pt-4'></label>").append(adminrempassinput);
+      var adminflexdiv = $("<div class='d-flex justify-content-between'></div>").append(adminlabel,adminrempassspan);
+      var admincontdiv = $("<div class='container'></div>").append(adminformgroup1,adminformgroup2,adminloginbtn,adminflexdiv);
+      var adminform = $("<form class='modal-content animate my-auto' action='/MovieStore/model/logindb?type=admin'></form>").append(adminimgdiv,admincontdiv);
+      modal.find('#tabs-2').append(adminform);
+
     }else if(recipient === "signup"){
       var avatar = $("<i class='fa fa-user-circle text-success'></i>");
       var imgdiv = $("<div class='imgcontainer my-0' style='font-size:110px'></div>").append(avatar);
@@ -64,7 +83,12 @@ $(function(){
       var signupbtn = $("<button type='submit'>Signup</button>");
       var contdiv = $("<div class='container'></div>").append(formgroup1,formgroup2,formgroup3,formgroup4,signupbtn);
       var form = $("<form class='modal-content animate my-auto' action='/action_page.php'></form>").append(imgdiv,contdiv);
-      modal.find('.modal-body').html(form)
+      var tab2 = $("#tabs-1").append(form);
+
+      var li1 = $("<li><a href='#tabs-1'>Login</a></li>");
+      var li2 = $('<li><a href="#tabs-2">SignUp</a></li>');
+      var tabs = $('<div id="tabs"></div>').append(li1,li2);
+      modal.find('.modal-body').html(form);
     }
   })
 })
