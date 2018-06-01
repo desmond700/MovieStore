@@ -9,7 +9,6 @@
     }
   }
 
-
   if($action == "list"){
     $title = filter_input(INPUT_GET, 'title');
     $genre = filter_input(INPUT_GET, 'genre_id');

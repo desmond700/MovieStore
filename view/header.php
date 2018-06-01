@@ -42,13 +42,14 @@
     <section class="asideMenu">
       <h4 class="pl-3 ">Menu-</h4>
       <a href="/MovieStore/">Home</a>
-      <a href="/MovieStore/manage/movies/">Movies</a>
+      <a href="/MovieStore/catalog/">Movies</a>
     </section>
-
+    <?php if(isset($_SESSION["is_loggedin"]) && $_SESSION["is_loggedin"]) : ?>
     <section class="mt-3">
       <h4 class="pl-3 ">Favourites-</h4>
 
     </section>
+    <?php endif; ?>
     <section class="mt-3">
       <h4 class="pl-3 ">Administration-</h4>
       <a href="/MovieStore/admin/">Admin</a>

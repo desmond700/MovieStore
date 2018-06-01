@@ -25,8 +25,17 @@
             <p class="font-weight-bold">Director</p>
             <div class="d-flex w-100 mt-auto ml-auto">
               <p class="mt-auto mr-auto"><a href="?action=favourite&filmid=<?php echo $movie["Film_id"] ?>" class="btn btn-outline-light bg-secondary text-white">Watch trailer</a></p>
-              <p class="mt-auto ml-auto"><a href="?action=favourite&filmid=<?php echo $movie["Film_id"] ?>" class="btn btn-outline-light bg-primary text-white">add to favourites</a></p>
-              <p class="mt-auto ml-2"><a href="../cart/?filmid=<?php echo $movie["Film_id"] ?>" class="btn btn-outline-light bg-warning text-white">add to cart</a></p>
+              <p class="mt-auto mr-auto"><a href="?action=favourite&filmid=<?php echo $movie["Film_id"] ?>" class="btn btn-outline-light bg-primary text-white">add to favourites</a></p>
+              <form class="d-flex" action="../cart/" method="get" id="add_to_cart_form">
+                  <input type="hidden" name="action" value="add" />
+                  <input type="hidden" name="product_id"
+                         value="<?php echo $movie["Film_id"] ?>" />
+                  <div class="d-flex my-auto mr-3">
+                    <b class="my-auto">Quantity:</b>&nbsp;
+                    <input type="text" name="quantity" value="1" size="2" />
+                  </div>
+                  <input class="btn btn-outline-light bg-warning text-white" type="submit" value="Add to Cart" />
+              </form>
             </div>
           </div>
         </div>
