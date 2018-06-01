@@ -47,8 +47,11 @@
                         <?php echo sprintf('$%.2f', cart_subtotal()); ?>
                     </td>
                 </tr>
-                <tr scope="row">
-                    <td colspan="4" class="right">
+                <tr scope="row" class="w-100">
+                  <td class="col-md-3"></td>
+                  <td class="col-md-3"></td>
+                  <td class="col-md-3"></td>
+                    <td class="col-md-3">
                         <input type="submit" value="Update Cart">
                     </td>
                 </tr>
