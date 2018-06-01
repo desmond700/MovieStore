@@ -13,7 +13,7 @@
 
   switch ($action) {
     case 'view':
-
+        $cart = cart_get_items();
         break;
     case 'add':
         $product_id = $_GET['product_id'];
