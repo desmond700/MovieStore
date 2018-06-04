@@ -2,11 +2,19 @@
 
   if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
+  if(isset($_POST["favourite_id"])){
+    delete_favourite($_POST["favourite_id"]);
+  }
+
   if(isset($_SESSION["is_loggedin"])){
     if(isset($_SESSION["username"])){
       $user = $_SESSION["username"];
       if($_SESSION["user_type"] !== "admin")
-        get_favourite($_SESSION["user_id"]);
+        if(isset($_SESSION["customer_id"])){
+          get_favourite($_SESSION["customer_id"]);
+
+        }
+
     }
     else if(isset($_SESSION["admin"]))
       $user = $_SESSION["admin"];
@@ -81,15 +89,20 @@
           <?php foreach($_SESSION["favourite"] as $film_id => $value) : ?>
             <div class="d-flex col-md-12 py-3 border-top">
               <div class="img-overlay-container">
-                <img src="/MovieStore/images/posters/<?php echo $value["poster"] ?>" width="100" alt="">
-                <div class="overlay">
-                  <?php echo $value["Title"] ?>
-                </div>
+                <a class="px-0 py-0" href="/MovieStore/catalog/?action=view&filmid=<?php echo $film_id ?>"><img src="/MovieStore/images/posters/<?php echo $value["poster"] ?>" width="100" alt="">
+                  <div class="overlay">
+                    <?php echo $value["Title"] ?>
+                  </div>
+                </a>
               </div>
-              <div class="px-3">
-                <p>Release Date: <?php echo $value["ReleaseDate"] ?></p>
-                <p>Run time: <?php echo $value["Runtime"] ?></p>
-                <p>Rating: <?php echo $value["Rating"] ?></p>
+              <div class="mx-3">
+                <p class="mb-1"><span class="font-weight-bold">Release Date:</span> <?php echo $value["ReleaseDate"] ?></p>
+                <p class="mb-1"><span class="font-weight-bold">Run time:</span> <?php echo $value["Runtime"] ?></p>
+                <p class="mb-1"><span class="font-weight-bold">Rating:</span> <?php echo $value["Rating"] ?></p>
+                <form class="" action="." method="post">
+                  <input type="hidden" name="favourite_id" value="<?php echo $value["Favourite_id"] ?>">
+                  <input class="px-0 py-0 btn btn-light" type="submit" value="Remove">
+                </form>
               </div>
             </div>
           <?php endforeach ?>
