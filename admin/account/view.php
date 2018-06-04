@@ -1,6 +1,6 @@
 <?php $pageTitle = "View Account" ?>
 <?php include "../../view/header.php"; ?>
-<main  style="margin:5em 0 5em 0">
+<main  style="margin:5em 0 21em 0">
   <div class="container">
     <h1>My Account</h1>
     <hr>

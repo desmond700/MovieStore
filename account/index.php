@@ -17,6 +17,21 @@ if ($action == NULL) {
 
 switch ($action) {
     case 'registration':
+
+        if(isset($_POST["uname"]) && isset($_POST["fname"]) && isset($_POST["lname"]) &&
+           isset($_POST["email"]) && isset($_POST["psw"]) && isset($_POST["cpsw"])){
+             if($_POST["psw"] === $_POST["cpsw"]){
+               $username = $_POST["uname"];
+               $firstname = $_POST["fname"];
+               $lastname = $_POST["lname"];
+               $email = $_POST["email"];
+               $password = $_POST["psw"];
+               add_register_customer($username,$firstname,$lastname,$email,$password);
+             }else {
+               $error = "Passwords must be equal.";
+             }
+        }
+
         include("registration.php");
         break;
     case 'login':

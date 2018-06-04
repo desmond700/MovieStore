@@ -52,4 +52,19 @@
 
     return $result;
   }
+
+  function add_register_customer($username,$firstname,$lastname,$email,$password){
+    global $db;
+    $query = "INSERT INTO customer(UserName, FirstName, LastName, Email, Password)
+              VALUES (:username, :firstname, :lastname, :email, :password)";
+    $statement = $db->prepare($query);
+    $statement->bindValue(":username", $username);
+    $statement->bindValue(":firstname", $firstname);
+    $statement->bindValue(":lastname", $lastname);
+    $statement->bindValue(":email", $email);
+    $statement->bindValue(":password", $password);
+    $statement->execute();
+    $statement->closeCursor();
+  }
+
 ?>

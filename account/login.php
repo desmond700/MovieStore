@@ -3,9 +3,9 @@
     <section class="container" style="margin-top: 5em">
       <div class="container d-flex">
         <form class="mx-auto w-50" action="." method="post">
-          <h1>Login</h1><?php echo "username: ".$username." password: ".$password ?>
+          <h1>Login</h1>
          <div class="imgcontainer">
-           <img src="img_avatar2.png" alt="Avatar" class="avatar">
+           <i class="fa fa-user-circle text-success" style="font-size:100px"></i>
          </div>
           <div class="form-group">
             <label for="uname"><b>Username</b></label>
@@ -17,13 +17,13 @@
           </div>
 
            <button class="btn btn-success" name="submit" type="submit">Login</button>
-           <label>
+
+
+         <div class="d-flex container" style="background-color:#f1f1f1">
+           <label class="my-auto">
              <input type="checkbox" checked="checked" name="remember"> Remember me
            </label>
-
-         <div class="container" style="background-color:#f1f1f1">
-           <button type="button" class="btn btn-danger cancelbtn">Cancel</button>
-           <span class="psw">Forgot <a href="#">password?</a></span>
+           <span class="psw py-0 ml-auto my-auto">Forgot <a href="#">password?</a></span>
          </div>
          <?php echo $error ?>
         </form>

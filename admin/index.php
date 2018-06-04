@@ -11,7 +11,7 @@
 ?>
 <?php $pageTitle = "Admin Panel" ?>
 <?php include("../view/header.php"); ?>
-    <main style="margin-top:5em">
+    <main style="margin:5em 0 15em 0">
       <div class="container">
         <h1 class="py-4">Admin Panel</h1>
         <hr>
@@ -25,7 +25,7 @@
           <a href="movies" class="d-block list-group-item list-group-item-action">
             Movies
           </a>
-          <a href="orders" class="d-block list-group-item list-group-item-action">
+          <a href="customers" class="d-block list-group-item list-group-item-action">
             Customers
           </a>
         </div>

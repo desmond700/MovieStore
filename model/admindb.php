@@ -50,4 +50,16 @@
     return $result;
   }
 
+  function get_all_customers(){
+    global $db;
+    $query = "SELECT *
+              FROM customer";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $results = $statement->fetchAll();
+    $statement->closeCursor();
+
+    return $results;
+  }
+
  ?>
