@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require ("../model/database.php");
   require ("../model/moviedb.php");
   $action = filter_input(INPUT_POST, 'action');
@@ -23,7 +24,6 @@
     else{
       $movies = get_movies();
     }
-
     include ("./list.php");
 
   }else if($action == "view"){
@@ -35,6 +35,13 @@
     }
     include ("view.php");
 
+  }else if($action == "add_favourite"){
+    if(isset($_GET["filmid"]) && isset($_SESSION["user_id"])){
+      $film_id = $_GET["filmid"];
+      $customer_id = $_SESSION["user_id"];
+      add_favourite($customer_id,$film_id);
+    }
+    header("Location: ./");
   }
 
 ?>

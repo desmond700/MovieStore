@@ -30,37 +30,51 @@
         <a class="my-auto" href="?action=add_movie">Add movie</a>
       </div>
       <div class="row mx-0" id="list">
-        <?php foreach ($movies as $movie) : ?>
-          <div class="d-flex col-md-12 border mb-2 px-0 py-3">
-            <div class="col-md-3">
-              <div class="card img-overlay-container">
-                <img src="/MovieStore/images/posters/<?php echo $movie["Image_Name"] ?>" height="200" alt="">
-                <div class="overlay"><?php echo $movie["Title"] ?></div>
-              </div>
+        <table class="table table-striped">
+          <thead>
+            <tr class="d-flex">
+              <th class="col-2">Posters</th>
+              <th class="col-2">Release Date</th>
+              <th class="col-2">Price</th>
+              <th class="col-2">Rating</th>
+              <th class="col-2">Genre</th>
+              <th class="col-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($movies as $movie) : ?>
+              <tr class="d-flex">
+                <td class="col-2">
+                  <div class="img-overlay-container">
+                    <img class="img-fluid" src="/MovieStore/images/posters/<?php echo $movie["Image_Name"] ?>" alt="">
+                    <div class="overlay"><?php echo $movie["Title"] ?></div>
+                  </div>
+                </td>
+                <td class="col-2">
+                  <p class=""><?php echo $movie["Release_Date"] ?></p>
+                </td>
+                <td class="col-2">
+                  <p class="text-danger">CDN$ <?php echo $movie["Price"] ?></p>
+                </td>
+                <td class="col-2">
+                  <p class=""><?php echo $movie["Rating"] ?></p>
+                </td>
+                <td class="col-2">
+                  <p class=""><?php echo $movie["Rating"] ?></p>
+                </td>
+                <td class="col-2">
+                  <div class="d-flex align-self-end">
+                    <a href="?action=edit_movie&filmid=<?php echo $movie["Film_id"] ?>">Edit</a>|
+                    <a href="?action=movie_details&filmid=<?php echo $movie["Film_id"] ?>">Details</a>|
+                    <a href="?action=delete_movie&filmid=<?php echo $movie["Film_id"] ?>">Delete</a>
+                  </div>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
 
-            </div>
-            <div class="col-md-3">
-              <h4>Release Date</h4>
-              <div class=""><?php echo $movie["Release_Date"] ?></div>
-            </div>
-            <div class="col-md-2">
-              <h4>Price</h4>
-              <p class="text-danger">CDN$ <?php echo $movie["Price"] ?></p>
-            </div>
-            <div class="col-md-1">
-              <h4>Rating</h4>
-              <p class=""><?php echo $movie["Rating"] ?></p>
-            </div>
-            <div class="d-flex col-md-3 justify-content-end">
-              <h4></h4>
-              <div class="d-flex align-self-end">
-                <a href="?action=edit_movie&filmid=<?php echo $movie["Film_id"] ?>">Edit</a>|
-                <a href="?action=movie_details&filmid=<?php echo $movie["Film_id"] ?>">Details</a>|
-                <a href="?action=delete_movie&filmid=<?php echo $movie["Film_id"] ?>">Delete</a>
-              </div>
-            </div>
-          </div>
-        <?php endforeach; ?>
+
       </div>
     </div>
   </section>

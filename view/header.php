@@ -1,10 +1,18 @@
 <?php
-  session_start();
 
-  if(isset($_SESSION["is_loggedin"]) && $_SESSION["is_loggedin"]){
-    $user = $_SESSION["Username"];
+  if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+
+  if(isset($_SESSION["is_loggedin"])){
+    if(isset($_SESSION["username"])){
+      $user = $_SESSION["username"];
+      if($_SESSION["user_type"] !== "admin")
+        get_favourite($_SESSION["user_id"]);
+    }
+    else if(isset($_SESSION["admin"]))
+      $user = $_SESSION["admin"];
   }else{
     $user = "guest";
+    $_SESSION["user_type"] = "guest";
   }
 ?>
 <!Doctype html>
@@ -31,6 +39,27 @@
   <script src="/MovieStore/js/main.js"></script>
 </head>
 <body>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalCenterTitle"><?php echo $movie["Title"] ?> trailer</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="<?php echo $movie["Trailer"] ?>" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="mySidenav" class="d-flex flex-column sidenav pt-0">
     <section class="d-flex">
       <a href="javascript:void(0)" class="closebtn d-flex my-auto py-0" onclick="closeNav()">x</a>
@@ -44,13 +73,31 @@
       <a href="/MovieStore/">Home</a>
       <a href="/MovieStore/catalog/">Movies</a>
     </section>
-    <?php if(isset($_SESSION["is_loggedin"]) && $_SESSION["is_loggedin"]) : ?>
+    <?php if(isset($_SESSION["username"]) && isset($_SESSION["favourite"])) : ?>
     <section class="mt-3">
       <h4 class="pl-3 ">Favourites-</h4>
-
+      <div class="container-fluid">
+        <div class="row">
+          <?php foreach($_SESSION["favourite"] as $film_id => $value) : ?>
+            <div class="d-flex col-md-12 py-3 border-top">
+              <div class="img-overlay-container">
+                <img src="/MovieStore/images/posters/<?php echo $value["poster"] ?>" width="100" alt="">
+                <div class="overlay">
+                  <?php echo $value["Title"] ?>
+                </div>
+              </div>
+              <div class="px-3">
+                <p>Release Date: <?php echo $value["ReleaseDate"] ?></p>
+                <p>Run time: <?php echo $value["Runtime"] ?></p>
+                <p>Rating: <?php echo $value["Rating"] ?></p>
+              </div>
+            </div>
+          <?php endforeach ?>
+        </div>
+      </div>
     </section>
     <?php endif; ?>
-    <section class="mt-3">
+    <section class="my-4 ">
       <h4 class="pl-3 ">Administration-</h4>
       <a href="/MovieStore/admin/">Admin</a>
     </section>
@@ -88,26 +135,53 @@
           </div>
           <div class="d-flex border-left border-right">
           <div class="dropdown d-flex flex-column">
-            <button class="btn btn-light dropdown-toggle h-100 pb-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="d-flex flex-column">
-                <i class="fa fa-user-circle mx-auto" style="font-size:28px"></i>
-                <span class="my-auto"><?php echo $user ?></span>
+            <button class="d-flex align-items-center btn btn-light dropdown-toggle h-100 py-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="d-flex">
+                <i class="fa fa-user-circle mx-1 my-auto" style="font-size:28px"></i>
+                <?php if($_SESSION["user_type"] == "admin") : ?>
+                  <div class="d-flex flex-column mx-1 my-auto">
+                    <span class="my-auto font-weight-bold"><?php echo $user ?></span>
+                    <small class="textsecondary">admin</small>
+                  </div>
+                <?php else : ?>
+                  <span class="my-auto"><?php echo $user ?></span>
+                <?php endif ?>
               </div>
             </button>
             <div class="dropdown-menu dropdown-menu-right px-2" aria-labelledby="dropdownMenuButton">
-              <div class="d-flex">
-                <div class="dropdown my-auto h-100">
-                  <a href="/MovieStore/account/?action=login" class="btn btn-light h-100">
-                    login
-                  </a>
-                </div>
+              <?php if(!isset($_SESSION["is_loggedin"])) : ?>
+                <div class="d-flex">
+                  <div class="dropdown my-auto h-100">
+                    <a href="/MovieStore/account/?action=login" class="btn btn-light h-100">
+                      Login
+                    </a>
+                  </div>
 
-                <div class="dropdown my-auto h-100">
-                  <a href="/MovieStore/account/?action=registration" class="btn btn-light h-100">
-                    signup
-                  </a>
+                  <div class="dropdown my-auto h-100">
+                    <a href="/MovieStore/account/?action=registration" class="btn btn-light h-100">
+                      Signup
+                    </a>
+                  </div>
                 </div>
-              </div>
+              <?php else : ?>
+                <div class="dropdown my-auto h-100 w-100">
+                  <?php if($_SESSION["user_type"] === "customer") : ?>
+                    <a href="/MovieStore/account/?action=view&customerid=<?php echo $_SESSION["customer_id"] ?>" class="btn btn-light h-100 w-100 border-bottom">
+                      My Account
+                    </a>
+                    <a href="/MovieStore/account/?action=logout" class="btn btn-light h-100 w-100">
+                      Logout
+                    </a>
+                  <?php else: ?>
+                    <a href="/MovieStore/admin/account/?action=view&adminid=<?php echo $_SESSION["admin_id"] ?>" class="btn btn-light h-100 w-100 border-bottom">
+                      My Account
+                    </a>
+                    <a href="/MovieStore/admin/account/?action=logout" class="btn btn-light h-100 w-100">
+                      Logout
+                    </a>
+                  <?php endif ?>
+                </div>
+              <?php endif ?>
             </div>
           </div>
         </div>

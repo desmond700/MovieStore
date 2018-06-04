@@ -1,3 +1,4 @@
+<?php $pageTitle = "Login" ?>
 <?php include("../view/header.php") ?>
     <section class="container" style="margin-top: 5em">
       <div class="container d-flex">

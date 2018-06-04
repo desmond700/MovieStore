@@ -1,3 +1,4 @@
+<?php $pageTitle = "View Cart" ?>
 <?php include("../view/header.php"); ?>
     <main style="margin-top:5em">
       <div class="container">
@@ -8,52 +9,55 @@
         <?php else: ?>
           <form action="." method="post">
             <input type="hidden" name="action" value="update">
-            <table id="cart" class="table">
+            <table class="table table-striped">
               <thead>
-                <tr id="cart_header">
-                    <th scope="col" class="col-md-3">Item</th>
-                    <th scope="col" class="col-md-3">Price</th>
-                    <th scope="col" class="col-md-3">Quantity</th>
-                    <th scope="col" class="col-md-3">Total</th>
+                <tr class="d-flex">
+                    <th class="col-3">Item</th>
+                    <th class="col-2">Price</th>
+                    <th class="col-2">Quantity</th>
+                    <th class="col-2">Total</th>
+                    <th class="col-3">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php foreach ($cart as $product_id => $item) : ?>
-                <tr scope="row">
-                    <td class="mr-4">
+                <tr class="d-flex">
+                    <th class="col-3">
                       <div class="img-overlay-container">
                         <img src="/MovieStore/images/posters/<?php echo $item["poster"] ?>" height="200" alt="">
                         <div class="overlay">
                           <?php echo htmlspecialchars($item['title']); ?>
                         </div>
                       </div>
-                    </td>
-                    <td class="right">
+                    </th>
+                    <td class="col-2">
                         <?php echo sprintf('$%.2f', $item['price']); ?>
                     </td>
-                    <td class="right">
-                        <input type="text" size="3" class="form-control w-25"
+                    <td class="col-2">
+                        <input type="text" size="3" class="form-control "
                                name="items[<?php echo $product_id; ?>]"
                                value="<?php echo $item['quantity']; ?>">
                     </td>
-                    <td class="right">
+                    <td class="col-2">
                       <?php echo sprintf('$%.2f', $item["total"]) ?>
+                    </td>
+                    <td class="col-3">
+                      <a href="<?php echo "" ?>">Remove item</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
-                <tr id="cart_footer" scope="row">
-                    <td colspan="3" class="right" ><b>Subtotal</b></td>
-                    <td class="right">
-                        <?php echo sprintf('$%.2f', cart_subtotal()); ?>
-                    </td>
+                <tr class="d-flex">
+                  <th class="col-3"><b>Subtotal</b></th>
+                  <td class="col-6"></td>
+                  <td class="col-3">
+                      <?php echo sprintf('$%.2f', cart_subtotal()); ?>
+                  </td>
                 </tr>
-                <tr scope="row" class="w-100">
-                  <td class="col-md-3"></td>
-                  <td class="col-md-3"></td>
-                  <td class="col-md-3"></td>
-                    <td class="col-md-3">
-                        <input type="submit" value="Update Cart">
-                    </td>
+                <tr class="d-flex">
+                  <td class="col-9"></td>
+                  <td class="col-3">
+                      <input type="submit" value="Update Cart">
+                  </td>
                 </tr>
               </tbody>
             </table>

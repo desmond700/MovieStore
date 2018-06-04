@@ -34,14 +34,21 @@ switch ($action) {
         include("login.php");
         break;
     case 'view':
+        if(filter_input(INPUT_GET, "customerid") !== NULL){
+          $customer_id = filter_input(INPUT_GET, "customerid");
+          $customer = get_customer_by_id($customer_id);
+        }
+
         include("view.php");
         break;
     case 'edit':
         include("edit.php");
         break;
     case 'logout':
-       unset($_SESSION['user']);
-       redirect('..');
+       unset($_SESSION['username']);
+       unset($_SESSION['user_type']);
+       unset($_SESSION['is_loggedin']);
+       header('Location: ../');
        break;
    default:
        //display_error("Unknown account action: " . $action);

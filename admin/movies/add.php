@@ -2,22 +2,53 @@
 <?php include "../../view/header.php"; ?>
   <main class="mb-4" style="margin-top: 5em">
     <div class="container">
-      <h1>Add movie</h1><?php echo "Genre_id: ".$genre[2] ?>
+      <h1>Add movie</h1>
       <hr>
+      <?php if(isset($added))echo $added ?>
       <div class="border px-4 py-4">
         <form class="col-md-8" action="?action=add_movie" method="post" enctype="multipart/form-data">
           <div class="d-flex form-group border-bottom pb-3">
             <label class="col-sm-4 col-md-3 pl-0">Title:&nbsp;</label>
             <input class="form-control form-control-sm" type="text" name="title" placeholder="Enter Movie's title">
           </div>
-          <div class="d-flex justify-content-between pl-0 border-bottom ">
-            <div class="form-group w-50 pr-2">
+          <div class=" justify-content-between pl-0 border-bottom ">
+            <div class="form-group pr-2">
               <label class="pl-0">Actors/Actresses:&nbsp;</label>
-              <input class="form-control form-control-sm mb-1" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
-              <input class="form-control form-control-sm mb-1" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
-              <input class="form-control form-control-sm mb-1" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
-              <input class="form-control form-control-sm mb-1" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
-              <input class="form-control form-control-sm mb-1" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
+              <div class="d-flex justify-content-between">
+                <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
+                <div class="d-flex justify-content-end w-50">
+                  <label style="width: 100px" for="">actor's img:</label>
+                  <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
+                <div class="d-flex justify-content-end w-50">
+                  <label style="width: 100px" for="">actor's img:</label>
+                  <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
+                <div class="d-flex justify-content-end w-50">
+                  <label style="width: 100px" for="">actor's img:</label>
+                  <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
+                <div class="d-flex justify-content-end w-50">
+                  <label style="width: 100px" for="">actor's img:</label>
+                  <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
+                <div class="d-flex justify-content-end w-50">
+                  <label style="width: 100px" for="">actor's img:</label>
+                  <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
+                </div>
+              </div>
             </div>
             <div class="form-group w-50 pl-2 border-left">
               <label class=" pl-0">Characters:&nbsp;</label>
@@ -27,6 +58,10 @@
               <input class="form-control form-control-sm mb-1" type="text" name="characters[]" placeholder="Enter Characters's name">
               <input class="form-control form-control-sm mb-1" type="text" name="characters[]" placeholder="Enter Characters's name">
             </div>
+          </div>
+          <div class="d-flex form-group pt-3">
+            <label class="col-sm-4 col-md-3 pl-0">Director/s:&nbsp;</label>
+            <input class="form-control form-control-sm" type="text" name="directors" placeholder="Enter Director/s">
           </div>
           <div class="d-flex form-group pt-3">
             <label class="col-sm-4 col-md-3 pl-0">Length:&nbsp;</label>
@@ -66,7 +101,7 @@
           </div>
           <div class="">
             <label for="">Select poster to upload:</label>
-            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="file" name="Film_image" id="fileToUpload">
           </div>
           <div class="d-flex justify-content-end">
             <input class="btn btn-outline-dark" type="submit" name="btn_add" value="Add">

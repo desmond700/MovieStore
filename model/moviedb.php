@@ -1,5 +1,4 @@
 <?php
-
     //********************//
     //** Get all movies **//
     //********************//
@@ -274,161 +273,45 @@
       return $id;
     }
 
-    function add_movie($title,$run_time,$release_date,$rating,$price,$overview,$image_name,$actors,$directors,$genres,$characters){
+    function add_favourite($customer_id,$film_id){
       global $db;
+      $query = 'INSERT INTO favourites(Customer_id,Film_id)
+                VALUES(:customer_id, :film_id)';
+      $statement = $db->prepare($query);
+      $statement->bindValue(":customer_id", $customer_id);
+      $statement->bindValue(":film_id", $film_id);
+      $statement->execute();
+      $statement->closeCursor();
+      get_favourite($customer_id);
+    }
 
-      $film_id = add_film($title,$run_time,$release_date,$rating,$price,$overview,$image_name);
-      $genreArray = explode(",",$genres);
-      $directorArray = explode(",",$directors);
-      $actorlength = count($actors);
-      //Insert Actors
-      for($i = 0; $i < $actorlength; ++$i){
-        $actornames = explode(" ",$actors[$i]);
+    function get_favourite($customer_id){
+      global $db;
+      $query = 'SELECT *
+                FROM favourites
+                INNER JOIN customer ON customer.Customer_id = favourites.Customer_id
+                INNER JOIN film ON film.Film_id = favourites.Film_id
+                WHERE customer.Customer_id = :customer_id';
+      try{
+          $statement = $db->prepare($query);
+          $statement->bindValue(":customer_id", $customer_id);
+          $statement->execute();
+          $favourites = $statement->fetchAll();
+          foreach ($favourites as $key => $value) {
+            $_SESSION["favourite"][$value["Film_id"]]["Title"] = $value["Title"];
+            $_SESSION["favourite"][$value["Film_id"]]["Runtime"] = $value["Run_time"];
+            $_SESSION["favourite"][$value["Film_id"]]["ReleaseDate"] = $value["Release_Date"];
+            $_SESSION["favourite"][$value["Film_id"]]["Rating"] = $value["Rating"];
+            $_SESSION["favourite"][$value["Film_id"]]["poster"] = $value["Image_Name"];
+          }
+          $statement->closeCursor();
+        }catch(PDOException $e){
 
-        if(empty($actornames[0]) || empty($actornames[1]))continue;
-
-        $actor_id = get_actor_id($actornames[0],$actornames[1]);
-        if(is_numeric($actor_id)){
-          add_actor_film($film_id,$actor_id);
-        }else {
-          $actor_id = add_actor($actornames[0],$actornames[1]);
-          add_actor_film($film_id,$actor_id);
         }
-        //Insert Characters
-        $characte_id = get_character_id($characters[$i]);
-        if(is_numeric($characte_id)){
-          add_character_film($characte_id,$film_id,$actor_id);
-        }else {
-          $characte_id = add_character($characters[$i]);
-          add_character_film($characte_id,$film_id,$actor_id);
-        }
-      }
-
-      //Insert Genre/s
-      foreach($genreArray as $genre){
-        $genre_id = get_genre_id($genre);
-        add_genre_film($genre_id,$film_id);
-      }
-
-      //Insert Director/s
-      foreach($directorArray as $director){
-        $directornames = explode(" ",$director);
-        if(empty($directornames[0]) || empty($directornames[1]))continue;
-        $director_id = get_director_id($directornames[0],$directornames[1]);
-
-        if(is_numeric($director_id)){
-          add_director_film($director_id,$film_id);
-        }else {
-          $director_id = add_director($directornames[0],$directornames[1]);
-          add_director_film($director_id,$film_id);
-        }
-      }
-    }
-
-    //Insert
-    function add_actor($fname, $lname){
-      global $db;
-      $query = 'INSERT INTO actor(FirstName, LastName)
-                VALUES(:fname,:lname)';
-      $statement = $db->prepare($query);
-      $statement->bindValue(":fname", $fname);
-      $statement->bindValue(":lname", $lname);
-      $statement->execute();
-      $id = $db->lastInsertId();
-      $statement->closeCursor();
-      return $id;
-    }
-
-    function add_director($fname, $lname){
-      global $db;
-      $query = 'INSERT INTO director(FirstName, LastName)
-                VALUES(:fname,:lname)';
-      $statement = $db->prepare($query);
-      $statement->bindValue(":fname", $fname);
-      $statement->bindValue(":lname", $lname);
-      $statement->execute();
-      $id = $db->lastInsertId();
-      $statement->closeCursor();
-      return $id;
-    }
-
-    function add_character($name){
-      global $db;
-      $query = 'INSERT INTO charactr(Name)
-                VALUES(:name)';
-      $statement = $db->prepare($query);
-      $statement->bindValue(":name", $name);
-      $statement->execute();
-      $id = $db->lastInsertId();
-      $statement->closeCursor();
-      return $id;
-    }
-
-    function add_film($title,$run_time,$release_date,$rating,$price,$overview,$image_name){
-      global $db;
-      $query = 'INSERT INTO film(Title,Run_time,Release_Date,Rating,Price,Overview,Image_Name)
-                VALUES(:title,:run_time,:release_date,:rating,:price,:overview,:image_name)';
-      $statement = $db->prepare($query);
-      $statement->bindValue(":title", $title);
-      $statement->bindValue(":run_time", $run_time);
-      $statement->bindValue(":release_date", $release_date);
-      $statement->bindValue(":rating", $rating);
-      $statement->bindValue(":price", $price);
-      $statement->bindValue(":overview", $overview);
-      $statement->bindValue(":image_name", $image_name);
-      $statement->execute();
-      $id = $db->lastInsertId();
-      $statement->closeCursor();
-      return $id;
-    }
-
-    function add_actor_film($film_id, $actor_id){
-      global $db;
-      $query = 'INSERT INTO actor_film(Film_id, Actor_id)
-                VALUES(:film_id, :actor_id)';
-      $statement = $db->prepare($query);
-      $statement->bindValue(":film_id", $film_id);
-      $statement->bindValue(":actor_id", $actor_id);
-      $statement->execute();
-      $statement->closeCursor();
-    }
-
-    function add_genre_film($genre_id,$film_id){
-      global $db;
-      $query = 'INSERT INTO genre_film(Genre_id,Film_id)
-                VALUES(:genre_id, :film_id)';
-      $statement = $db->prepare($query);
-      $statement->bindValue(":genre_id", $genre_id);
-      $statement->bindValue(":film_id", $film_id);
-      $statement->execute();
-      $statement->closeCursor();
-    }
-
-    function add_director_film($director_id,$film_id){
-      global $db;
-      $query = 'INSERT INTO director_film(Director_id,Film_id)
-                VALUES(:director_id, :film_id)';
-      $statement = $db->prepare($query);
-      $statement->bindValue(":director_id", $director_id);
-      $statement->bindValue(":film_id", $film_id);
-      $statement->execute();
-      $statement->closeCursor();
-    }
-
-    function add_character_film($character_id,$film_id,$actor_id){
-      global $db;
-      $query = 'INSERT INTO charactr_film(Character_id, Film_id, Actor_id)
-                VALUES(:character_id, :film_id, :actor_id)';
-      $statement = $db->prepare($query);
-      $statement->bindValue(":character_id", $character_id);
-      $statement->bindValue(":film_id", $film_id);
-      $statement->bindValue(":actor_id", $actor_id);
-      $statement->execute();
-      $statement->closeCursor();
     }
 
 
     // Update information
-    
+
 
 ?>

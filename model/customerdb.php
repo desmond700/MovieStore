@@ -1,5 +1,5 @@
 <?php
-
+  session_start();
   $error = ""; //Variable for storing our errors.
 
   function is_valid_customer($username,$password){
@@ -17,13 +17,39 @@
     $rows = $statement->rowCount();
 
     if($rows === 1){
-      $_SESSION["Username"] = $username;
-      $_SESSION["is_loggedin"] = true;
+      if(isset($_SESSION["username"])){
+        unset($_SESSION["username"]);
+        unset($_SESSION["user_type"]);
+        unset($_SESSION["admin_id"]);
+        unset($_SESSION["is_loggedin"]);
+        $_SESSION["username"] = $username;
+        $_SESSION["user_type"] = "customer";
+        $_SESSION["is_loggedin"] = true;
+        $_SESSION["customer_id"] = $result["Customer_id"];
+      }else{
+        $_SESSION["username"] = $username;
+        $_SESSION["user_type"] = "customer";
+        $_SESSION["is_loggedin"] = true;
+        $_SESSION["customer_id"] = $result["Customer_id"];
+      }
+
       header("Location: /MovieStore/");
     }else{
       $error = "Incorrect username or password.";
     }
   }
 
+  function get_customer_by_id($customer_id){
+    global $db;
+    $query = "SELECT *
+              FROM customer
+              WHERE Customer_id = :customer_id";
+    $statement = $db->prepare($query);
+    $statement->bindValue(":customer_id", $customer_id);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
 
+    return $result;
+  }
 ?>
