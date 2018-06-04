@@ -298,6 +298,7 @@
           $statement->execute();
           $favourites = $statement->fetchAll();
           foreach ($favourites as $key => $value) {
+            $_SESSION["favourite"][$value["Film_id"]]["Favourite_id"] = $value["Favourites_id"];
             $_SESSION["favourite"][$value["Film_id"]]["Title"] = $value["Title"];
             $_SESSION["favourite"][$value["Film_id"]]["Runtime"] = $value["Run_time"];
             $_SESSION["favourite"][$value["Film_id"]]["ReleaseDate"] = $value["Release_Date"];
@@ -310,7 +311,14 @@
         }
     }
 
-
+    function delete_favourite($favourite_id){
+      global $db;
+      $query = 'DELETE FROM `favourites` WHERE Favourites_id = :favourite_id';
+      $statement = $db->prepare($query);
+      $statement->bindValue(":favourite_id", $favourite_id);
+      $statement->execute();
+      $statement->closeCursor();
+    }
     // Update information
 
 
