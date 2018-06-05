@@ -25,6 +25,13 @@
     case 'update':
 
         break;
+    case 'remove':
+        if(isset($_POST['film_id'])){
+          $film_id = $_POST['film_id'];
+          remove_cart_item($film_id);
+        }
+        header("Location: /MovieStore/cart/");
+        break;
     default:
 
   }

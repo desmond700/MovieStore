@@ -53,5 +53,12 @@ function cart_subtotal () {
     }
     return $subtotal;
 }
+function remove_cart_item($film_id){
+  $key = array_search($film_id,$_SESSION["cart"]);
+  if($key !== false){
+    unset($_SESSION["cart"][$key]);
+  }
+}
+
 
 ?>
