@@ -27,6 +27,7 @@ switch ($action) {
                $email = $_POST["email"];
                $password = $_POST["psw"];
                add_register_customer($username,$firstname,$lastname,$email,$password);
+               $registered = "Successfully registered.";
              }else {
                $error = "Passwords must be equal.";
              }

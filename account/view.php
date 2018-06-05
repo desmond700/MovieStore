@@ -1,6 +1,6 @@
 <?php $pageTitle = "View Account" ?>
 <?php include "../view/header.php"; ?>
-  <main  style="margin:5em 0 5em 0">
+  <main  style="margin:5em 0 21em 0">
     <div class="container">
       <h1>My Account</h1>
       <hr>
@@ -23,22 +23,22 @@
                 <?php echo $customer["Customer_id"] ?>
               </td>
               <td class="col-2">
-                <?php echo $customer["UserName"] ?>
+                <input class="form-control" type="text" value="<?php echo $customer["UserName"] ?>">
               </td>
               <td class="col-2">
-                <?php echo $customer["FirstName"] ?>
+                <input class="form-control" type="text" value="<?php echo $customer["FirstName"] ?>">
               </td>
               <td class="col-2">
-                <?php echo $customer["LastName"] ?>
+                <input class="form-control" type="text" value="<?php echo $customer["LastName"] ?>">
               </td>
               <td class="col-2">
-                <?php echo $customer["Email"] ?>
+                <input class="form-control" type="text" value="<?php echo $customer["Email"] ?>">
               </td>
               <td class="col-2">
-                <?php echo $customer["Password"] ?>
+                <input class="form-control" type="text" value="<?php echo $customer["Password"] ?>">
               </td>
               <td class="col-1">
-                <a href="#">Edit</a>
+                <a href="#">Update</a>
               </td>
             </tr>
           </tbody>
