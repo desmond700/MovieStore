@@ -17,14 +17,11 @@ switch ($action) {
         include("view_customers.php");
         break;
     case 'delete':
-        if(isset($_POST["uname"]) && isset($_POST["psw"])){
-          $uname = $_POST["uname"];
-          $pswrd = $_POST["psw"];
-          is_admin($uname, $pswrd);
-          header("Location: /MovieStore/admin/");
+        if(isset($_POST["film_id"])){
+          $customer_id = $_POST["film_id"];
+          remove_customer($customer_id);
         }
-
-        include("login.php");
+        header("Location: /MovieStore/admin/customers/");
         break;
     default:
 

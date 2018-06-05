@@ -62,4 +62,13 @@
     return $results;
   }
 
+  function remove_customer($customer_id){
+    global $db;
+    $query = "DELETE FROM `customer`
+              WHERE Customer_id = :customer_id";
+    $statement = $db->prepare($query);
+    $statement->bindValue(":customer_id", $customer_id);
+    $statement->execute();
+    $statement->closeCursor();
+  }
  ?>

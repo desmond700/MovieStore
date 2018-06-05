@@ -19,9 +19,6 @@
           <a href="account" class="d-block list-group-item list-group-item-action">
             Account
           </a>
-          <a href="orders" class="d-block list-group-item list-group-item-action">
-            Orders
-          </a>
           <a href="movies" class="d-block list-group-item list-group-item-action">
             Movies
           </a>

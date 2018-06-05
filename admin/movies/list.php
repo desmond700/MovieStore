@@ -30,54 +30,50 @@
         <a class="my-auto btn btn-outline-dark" href="?action=add_movie">Add movie</a>
       </div>
       <div class="row mx-0" id="list">
-        <table class="table table-striped">
-          <thead>
-            <tr class="d-flex">
-              <th class="col-2">Posters</th>
-              <th class="col-2">Release Date</th>
-              <th class="col-2">Price</th>
-              <th class="col-1">Rating</th>
-              <th class="col-2">Genre</th>
-              <th class="col-3">Action</th>
-            </tr>
-          </thead>
-          <tbody>
+
             <?php foreach ($movies as $movie) : ?>
-              <tr class="d-flex">
-                <td class="col-2">
-                  <div class="img-overlay-container">
-                    <img class="img-fluid" src="/MovieStore/images/posters/<?php echo $movie["Image_Name"] ?>" alt="">
-                    <div class="overlay"><?php echo $movie["Title"] ?></div>
+              <div class="container-fluid d-flex col-md-12 my-3 py-3 border-bottom">
+                <div class="row">
+                  <div class="col-12 col-md-2">
+                    <h4>Movie</h4>
+                    <div class="img-overlay-container">
+                      <img class="img-fluid" src="/MovieStore/images/posters/<?php echo $movie["Image_Name"] ?>" alt="">
+                      <div class="overlay"><?php echo $movie["Title"] ?></div>
+                    </div>
                   </div>
-                </td>
-                <td class="col-2">
-                  <p class=""><?php echo $movie["Release_Date"] ?></p>
-                </td>
-                <td class="col-2">
-                  <p class="text-danger">CDN$ <?php echo $movie["Price"] ?></p>
-                </td>
-                <td class="col-1">
-                  <p class=""><?php echo $movie["Rating"] ?></p>
-                </td>
-                <td class="col-2">
-                  <?php foreach(get_genres_by_film_id($movie["Film_id"]) as $genre) : ?>
-                    <p><?php echo $genre["Genre"] ?></p>
-                  <?php endforeach ?>
-                </td>
-                <td class="col-3">
-                  <div class="d-flex">
-                    <a class="btn btn-success ml-1" href="?action=edit_movie&filmid=<?php echo $movie["Film_id"] ?>">Edit</a>
-                    <a class="btn btn-warning text-white ml-1" href="?action=movie_details&filmid=<?php echo $movie["Film_id"] ?>">Details</a>
-                    <form class=" ml-1" action="." method="post">
-                      <input type="hidden" name="film_id" value="<?php echo $movie["Film_id"]; ?>">
-                      <input class="btn btn-danger" type="submit" value="Delete">
-                    </form>
+                  <div class="col-12 col-md-2">
+                    <h4>Released Date</h4>
+                    <p class=""><?php echo $movie["Release_Date"] ?></p>
                   </div>
-                </td>
-              </tr>
+                  <div class="col-12 col-md-2">
+                    <h4>Price</h4>
+                    <p class="text-danger">CDN$ <?php echo $movie["Price"] ?></p>
+                  </div>
+                  <div class="col-12 col-md-1">
+                    <h4>Rating</h4>
+                    <p class=""><?php echo $movie["Rating"] ?></p>
+                  </div>
+                  <div class="col-12 col-md-2">
+                    <h4>Genre</h4>
+                    <?php foreach(get_genres_by_film_id($movie["Film_id"]) as $genre) : ?>
+                      <p><?php echo $genre["Genre"] ?></p>
+                    <?php endforeach ?>
+                  </div>
+                  <div class="col-1 col-md-3">
+                    <h4>Action</h4>
+                    <div class="d-flex">
+                      <a class="btn btn-success ml-1" href="?action=edit_movie&filmid=<?php echo $movie["Film_id"] ?>">Edit</a>
+                      <a class="btn btn-warning text-white ml-1" href="?action=movie_details&filmid=<?php echo $movie["Film_id"] ?>">Details</a>
+                      <form class=" ml-1" action="." method="post">
+                        <input type="hidden" name="film_id" value="<?php echo $movie["Film_id"]; ?>">
+                        <input class="btn btn-danger" type="submit" value="Delete">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             <?php endforeach; ?>
-          </tbody>
-        </table>
 
 
       </div>
