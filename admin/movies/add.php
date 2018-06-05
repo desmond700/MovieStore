@@ -17,40 +17,35 @@
               <div class="d-flex justify-content-between">
                 <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
                 <div class="d-flex justify-content-end w-50">
-                  <label style="width: 100px" for="">actor's img:</label>
                   <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
                 </div>
               </div>
               <div class="d-flex justify-content-between">
                 <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
                 <div class="d-flex justify-content-end w-50">
-                  <label style="width: 100px" for="">actor's img:</label>
                   <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
                 </div>
               </div>
               <div class="d-flex justify-content-between">
                 <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
                 <div class="d-flex justify-content-end w-50">
-                  <label style="width: 100px" for="">actor's img:</label>
                   <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
                 </div>
               </div>
               <div class="d-flex justify-content-between">
                 <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
                 <div class="d-flex justify-content-end w-50">
-                  <label style="width: 100px" for="">actor's img:</label>
                   <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
                 </div>
               </div>
               <div class="d-flex justify-content-between">
                 <input class="form-control form-control-sm mb-1 w-50" type="text" name="actors[]" placeholder="Enter Actor's/Actress's first and last names">
                 <div class="d-flex justify-content-end w-50">
-                  <label style="width: 100px" for="">actor's img:</label>
                   <input style="width:200px" type="file" name="actorimg[]" id="fileToUpload">
                 </div>
               </div>
             </div>
-            <div class="form-group w-50 pl-2 border-left">
+            <div class="form-group pl-2 border-left">
               <label class=" pl-0">Characters:&nbsp;</label>
               <input class="form-control form-control-sm mb-1" type="text" name="characters[]" placeholder="Enter Characters's name">
               <input class="form-control form-control-sm mb-1" type="text" name="characters[]" placeholder="Enter Characters's name">
@@ -62,6 +57,10 @@
           <div class="d-flex form-group pt-3">
             <label class="col-sm-4 col-md-3 pl-0">Director/s:&nbsp;</label>
             <input class="form-control form-control-sm" type="text" name="directors" placeholder="Enter Director/s">
+          </div>
+          <div class="d-flex form-group pt-3">
+            <label class="col-sm-4 col-md-3 pl-0">Trailer:&nbsp;</label>
+            <input class="form-control form-control-sm" type="text" name="trailer" placeholder="Enter Trailer URL">
           </div>
           <div class="d-flex form-group pt-3">
             <label class="col-sm-4 col-md-3 pl-0">Length:&nbsp;</label>

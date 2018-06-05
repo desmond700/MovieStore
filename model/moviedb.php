@@ -92,13 +92,9 @@
       $statement = $db->prepare($query);
       $statement->bindValue(":id", $id);
       $statement->execute();
-      $genre = $statement->fetchAll();
-      $names = "";
-      foreach ($genre as $key => $value) {
-        $names .= $value["Genre"].", ";
-      }
+      $genres = $statement->fetchAll();
       $statement->closeCursor();
-      return $names;
+      return $genres;
     }
 
     //***************************//
@@ -319,7 +315,15 @@
       $statement->execute();
       $statement->closeCursor();
     }
-    // Update information
+
+    function delete_film($film_id){
+      global $db;
+      $query = 'DELETE FROM `film` WHERE Film_id = :film_id';
+      $statement = $db->prepare($query);
+      $statement->bindValue(":film_id", $film_id);
+      $statement->execute();
+      $statement->closeCursor();
+    }
 
 
 ?>

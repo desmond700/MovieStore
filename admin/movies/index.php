@@ -42,7 +42,7 @@
   }else if($action == "add_movie"){
 
     if(isset($_POST['title']) && isset($_POST['runtime']) && isset($_POST['releasedate']) &&
-       isset($_POST['rating']) && isset($_POST['price']) && isset($_POST['overview']) &&
+       isset($_POST['rating']) && isset($_POST['price']) && isset($_POST['overview']) && isset($_POST['trailer']) &&
        isset($_POST['directors']) && isset($_POST['genres']) && isset($_FILES["Film_image"]["name"]) &&
        isset($_FILES['actorimg']["name"]) && isset($_FILES["Film_image"]["name"]) && isset($_REQUEST['characters'])){
       $title = $_POST['title'];
@@ -55,9 +55,10 @@
       $image_name = basename($_FILES["Film_image"]["name"]);
       $actors = $_REQUEST['actors'];
       $directors = $_POST['directors'];
+      $trailer = $_POST['trailer'];
       $genres = $_POST['genres'];
       $characters = $_REQUEST['characters'];
-      add_movie($title,$run_time,$release_date,$rating,$price,$overview,$image_name,$actors,$actorsimg,$directors,$genres,$characters);
+      add_movie($title,$run_time,$release_date,$rating,$price,$trailer,$overview,$image_name,$actors,$actorsimg,$directors,$genres,$characters);
       $added = "Filmed Added to database.";
     }
 
@@ -105,6 +106,12 @@
     include ("details.php");
 
   }else if($action == "delete_movie"){
-    include ("details.php");
+
+    if(isset($_POST["film_id"])){
+      $film_id = $_POST["film_id"];
+      delete_film($film_id);
+    }
+
+    header ("Location: /MovieStore/admin/movies/");
   }
 ?>

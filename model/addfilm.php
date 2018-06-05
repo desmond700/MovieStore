@@ -1,9 +1,9 @@
 <?php
 
-function add_movie($title,$run_time,$release_date,$rating,$price,$overview,$image_name,$actors,$actorsimg,$directors,$genres,$characters){
+function add_movie($title,$run_time,$release_date,$rating,$price,$trailer,$overview,$image_name,$actors,$actorsimg,$directors,$genres,$characters){
   global $db;
 
-  $film_id = add_film($title,$run_time,$release_date,$rating,$price,$overview,$image_name);
+  $film_id = add_film($title,$run_time,$release_date,$rating,$price,$trailer,$overview,$image_name);
   $directorArray = explode(",",$directors);
   $actorlength = count($actors);
   $directorlength = count($directorArray);
@@ -92,16 +92,17 @@ function add_character($name){
   return $id;
 }
 
-function add_film($title,$run_time,$release_date,$rating,$price,$overview,$image_name){
+function add_film($title,$run_time,$release_date,$rating,$price,$trailer,$overview,$image_name){
   global $db;
-  $query = 'INSERT INTO film(Title,Run_time,Release_Date,Rating,Price,Overview,Image_Name)
-            VALUES(:title,:run_time,:release_date,:rating,:price,:overview,:image_name)';
+  $query = 'INSERT INTO film(Title,Run_time,Release_Date,Rating,Price,Trailer,Overview,Image_Name)
+            VALUES(:title,:run_time,:release_date,:rating,:price,:trailer,:overview,:image_name)';
   $statement = $db->prepare($query);
   $statement->bindValue(":title", $title);
   $statement->bindValue(":run_time", $run_time);
   $statement->bindValue(":release_date", $release_date);
   $statement->bindValue(":rating", $rating);
   $statement->bindValue(":price", $price);
+  $statement->bindValue(":trailer", $trailer);
   $statement->bindValue(":overview", $overview);
   $statement->bindValue(":image_name", $image_name);
   $statement->execute();
