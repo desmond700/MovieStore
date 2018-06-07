@@ -133,8 +133,8 @@
           </div>
         </div>
 
-        <form class="col-sm-4 col-md-5 form-inline my-2" id="search-lg">
-          <input class="form-control flex-grow-1 mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form id="search-lg" class="col-sm-4 col-md-5 form-inline my-2" action="/MovieStore/search" method="post">
+          <input class="form-control flex-grow-1 mr-sm-2" type="text" name="title" placeholder="Search" aria-label="Search">
           <input class="btn btn-outline-dark ml-auto my-2 my-sm-0" type="submit" value="search">
         </form>
         <button class="d-flex btn btn-outline-dark w-75 mx-auto my-auto px-1 py-1" id="mobilSrch">

@@ -11,40 +11,40 @@
           </form>
        </div>
        <div class="col-sm-4 col-lg-3 card-body px-3">
-          <h2>Menu-</h2>
+          <h2>Genres-</h2>
           <div class="d-flex justify-content-between">
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link font-weight-bold text-white" href="index.html">Technology <span class="sr-only">(current)</span></a>
+                <a class="nav-link font-weight-bold text-white" href="/MovieStore/catalog/?genre_id=0">Action <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link font-weight-bold text-white" href="books.html">Science</a>
+                <a class="nav-link font-weight-bold text-white" href="/MovieStore/catalog/?genre_id=9">Triller</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link font-weight-bold text-white" href="about.html">Mathematics</a>
+                <a class="nav-link font-weight-bold text-white" href="/MovieStore/catalog/?genre_id=5">Adventure</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link font-weight-bold text-white" href="contact.html">Non-Fiction</a>
+                <a class="nav-link font-weight-bold text-white" href="/MovieStore/catalog/?genre_id=4">Science Fiction</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link font-weight-bold text-white" href="sitemap.html">Fiction</a>
+                <a class="nav-link font-weight-bold text-white" href="/MovieStore/catalog/?genre_id=6">Fantasy</a>
               </li>
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link text-white" href="index.html">Privacy <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="/MovieStore/catalog/?genre_id=11">Crime <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="books.html">Services</a>
+                <a class="nav-link text-white" href="/MovieStore/catalog/?genre_id=10">Mystery</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="about.html">Terms of Agreement</a>
+                <a class="nav-link text-white" href="/MovieStore/catalog/?genre_id=1">Drama</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="contact.html">Contact Us</a>
+                <a class="nav-link text-white" href="/MovieStore/catalog/?genre_id=2">Comedy</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="sitemap.html">Sitemap</a>
+                <a class="nav-link text-white" href="/MovieStore/catalog/?genre_id=8">Horror</a>
               </li>
             </ul>
           </div>
@@ -66,7 +66,12 @@
            </a>
          </div>
         <div class="col-sm-12 col col-lg-3 card-body px-3">
-             <h2>Logo</h2>
+          <div class="d-flex mr-2" id="logoCln">
+            <a href="/MovieStore/" class="d-flex my-auto logo card-link">
+              <i class="fa fa-film text-primary my-auto" style="font-size:48px"></i>
+              <span class="my-auto text-white" style="font-size:48px">MovieStore</span>
+            </a>
+          </div>
            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur perferendis iste quod.</p>
          </div>
          <div class="d-flex col-sm-12 col col-lg-12 card-body px-3">

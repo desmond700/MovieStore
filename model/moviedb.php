@@ -314,6 +314,11 @@
       $statement->bindValue(":favourite_id", $favourite_id);
       $statement->execute();
       $statement->closeCursor();
+      // remove from session
+      $key = array_search($favourite_id,$_SESSION["favourite"]);
+      if($key !== false){
+        unset($_SESSION["favourite"][$key]);
+      }
     }
 
     function delete_film($film_id){
