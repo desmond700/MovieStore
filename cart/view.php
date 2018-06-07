@@ -5,7 +5,9 @@
         <h1>Cart</h1>
         <hr>
         <?php if(cart_product_count() == 0) : ?>
-          <p>There are no products in your cart.</p>
+          <div class="" style="margin:5em 0 10em 0">
+            <p class="text-center">There are no products in your cart.</p>
+          </div>
         <?php else: ?>
             <div class="my-4">
 
@@ -41,7 +43,7 @@
                         <div class="col-12 col-sm-3">
                           <h4>Action</h4>
                           <div class="d-flex">
-                            
+
 							  <input type="hidden" name="film_id" value="<?php echo $product_id ?>"/>
                               <input class="btn btn-outline-primary" type="submit" value="Update item">
                             </form>
