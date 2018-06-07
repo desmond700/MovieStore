@@ -23,7 +23,10 @@
         $cart = cart_get_items();
         break;
     case 'update':
-
+		if(isset($_POST['film_id']) && isset($_POST['quantity'])){
+			cart_update_item($_POST['film_id'], $_POST['quantity']);
+		}
+		$cart = cart_get_items();
         break;
     case 'remove':
         if(isset($_POST['film_id'])){

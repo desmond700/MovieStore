@@ -53,11 +53,20 @@ function cart_subtotal () {
     }
     return $subtotal;
 }
+
+// Remove an item in the cart
 function remove_cart_item($film_id){
   $key = array_search($film_id,$_SESSION["cart"]);
   if($key !== false){
     unset($_SESSION["cart"][$key]);
   }
+}
+
+// Update an item in the cart
+function cart_update_item($product_id, $quantity) {
+    if (isset($_SESSION['cart'][$product_id])) {
+        $_SESSION['cart'][$product_id] = round($quantity, 0);
+    }
 }
 
 

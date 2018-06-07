@@ -29,8 +29,9 @@
 
                         <div class="col-12 col-sm-2">
                           <h4>Quantity</h4>
+							<form class="mr-2" action="?action=update" method="post">
                             <input type="text" style="width:40px" class="form-control "
-                                   name="items[<?php echo $product_id; ?>]"
+                                   name="quantity"
                                    value="<?php echo $item['quantity']; ?>">
                         </div>
                         <div class="col-12 col-sm-2">
@@ -40,7 +41,8 @@
                         <div class="col-12 col-sm-3">
                           <h4>Action</h4>
                           <div class="d-flex">
-                            <form class="mr-2" action="." method="post">
+                            
+							  <input type="hidden" name="film_id" value="<?php echo $product_id ?>"/>
                               <input class="btn btn-outline-primary" type="submit" value="Update item">
                             </form>
                             <form action="?action=remove" method="post">
@@ -48,7 +50,6 @@
                               <input class="btn btn-outline-danger" type="submit" value="Remove item"/>
                             </form>
                           </div>
-
                       </div>
                       </div>
                     </div>
