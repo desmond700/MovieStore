@@ -64,7 +64,7 @@
                     <div class="d-flex">
                       <a class="btn btn-success ml-1" href="?action=edit_movie&filmid=<?php echo $movie["Film_id"] ?>">Edit</a>
                       <a class="btn btn-warning text-white ml-1" href="?action=movie_details&filmid=<?php echo $movie["Film_id"] ?>">Details</a>
-                      <form class=" ml-1" action="." method="post">
+                      <form class=" ml-1" action="?action=delete_movie" method="post">
                         <input type="hidden" name="film_id" value="<?php echo $movie["Film_id"]; ?>">
                         <input class="btn btn-danger" type="submit" value="Delete">
                       </form>

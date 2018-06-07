@@ -1,11 +1,30 @@
 <?php
 
-  function update_film($film_id,$title,$run_time,$release_date,$rating,$price,$overview,$actor_id,$actors,$character_id,$characters,$director_id,$directors){
+  function update_film($film_id,$title,$run_time,$release_date,$rating,$price,$overview,$actors,$characters,$directors){
+    $actorlength = count($actors);
+    $directorArray = explode(",",$directors);
+    $directorlength = count($directorArray);
 
     film($film_id,$title,$run_time,$release_date,$rating,$price,$overview);
-    update_actor($actor_id,$firstname,$lastname);
-    update_character($character_id,$name);
-    update_director($director_id,$firstname,$lastname);
+
+    for($i = 0; $i < $actorlength; $i++){
+      $actorname = explode(" ",$actors[$i]);
+      $actor_id = get_actor_id($actorname[0],$actorname[1]);
+      update_actor($actor_id,$actorname[0],$actorname[1]);
+    }
+
+    foreach($characters as $character){
+      $characte_id = get_character_id($character);
+      update_character($character_id,$character);
+    }
+
+    for($i = 0; $i < $directorlength; ++$i){
+      $directorname = explode(" ",$directorArray[$i]);
+      $director_id = get_director_id($directorname[0],$directorname[1]);
+      update_director($director_id,$directorname[0],$directorname[1]);
+    }
+
+
   }
 
   function film($film_id,$title,$run_time,$release_date,$rating,$price,$overview){

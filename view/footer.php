@@ -66,7 +66,12 @@
            </a>
          </div>
         <div class="col-sm-12 col col-lg-3 card-body px-3">
-             <h2>Logo</h2>
+          <div class="d-flex mr-2" id="logoCln">
+            <a href="/MovieStore/" class="d-flex my-auto logo card-link">
+              <i class="fa fa-film text-primary my-auto" style="font-size:48px"></i>
+              <span class="my-auto text-white" style="font-size:48px">MovieStore</span>
+            </a>
+          </div>
            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur perferendis iste quod.</p>
          </div>
          <div class="d-flex col-sm-12 col col-lg-12 card-body px-3">

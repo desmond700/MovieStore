@@ -8,8 +8,7 @@
 
       <hr>
       <div class="border px-4 py-4">
-        <?php  ?>
-        <form class="col-md-8" action="?action=edit_movie" method="get" enctype="multipart/form-data">
+        <form class="col-md-8" action="?action=edit_movie" method="post" enctype="multipart/form-data">
           <div class="d-flex form-groupp border-bottom pb-3">
             <label class="col-sm-4 col-md-3 pl-0">Title:&nbsp;</label>
             <input class="form-control form-control-sm" type="text" name="title" value="<?php echo $movie["Title"] ?>">
@@ -19,14 +18,12 @@
               <label class="pl-0">Actors/Actresses:&nbsp;</label>
               <?php foreach($actors as $actor) : ?>
                 <input class="form-control form-control-sm mb-1" type="text" value="<?php echo $actor["FirstName"]." ".$actor["LastName"] ?>" name="actors[]">
-                <input type="hidden" name="actor_id[]" value="<?php echo $movie["Actor_id"] ?>" />
               <?php endforeach ?>
             </div>
             <div class="form-group w-50 pl-2 border-left">
               <label class=" pl-0">Characters:&nbsp;</label>
               <?php foreach($characters as $character) : ?>
                 <input class="form-control form-control-sm mb-1" type="text" value="<?php echo $character["Name"] ?>" name="characters[]">
-                <input type="hidden" name="character_id[]" value="<?php echo $movie["Character_id"] ?>" />
               <?php endforeach ?>
             </div>
           </div>
