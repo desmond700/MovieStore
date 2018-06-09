@@ -30,6 +30,7 @@
             <p class="font-weight-bold mb-1">Overview</p>
             <p><?php echo $movie["Overview"] ?></p>
             <p class="font-weight-bold">Director</p>
+            <p><?php echo $movie["FirstName"]." ".$movie["LastName"] ?></p>
           </div>
         </div>
         <div class="col-12 my-3"><hr></div>
