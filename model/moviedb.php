@@ -37,7 +37,9 @@
       global $db;
       $query = 'SELECT *
                 FROM film
-                WHERE Film_id = :id';
+                INNER JOIN director_film ON director_film.Film_id = film.Film_id
+                INNER JOIN director ON director.Director_id = director_film.Director_id
+                WHERE film.Film_id = :id';
       $statement = $db->prepare($query);
       $statement->bindValue(":id", $id);
       $statement->execute();
