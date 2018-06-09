@@ -23,14 +23,13 @@
             <div class="col-md-9 d-flex flex-column text-white px-4 pt-sm-4 pt-md-0">
               <h2 class="mb-4"><?php echo $movie["Title"] ?></h2>
               <p><span class="font-weight-bold">Release Date:</span> <?php echo $movie["Release_Date"] ?></p>
-              <div class="col-12 col-md-2 d-flex px-0">
+              <div class="d-flex px-0">
                 <span class="font-weight-bold">Genre:&nbsp;</span>
-                <div class="">
+                <div>
                   <?php foreach(get_genres_by_film_id($movie["Film_id"]) as $genre) : ?>
                     <p><?php echo $genre["Genre"] ?></p>
                   <?php endforeach ?>
                 </div>
-
               </div>
               <p class="font-weight-bold mb-1">Overview</p>
               <p><?php echo $movie["Overview"] ?></p>
