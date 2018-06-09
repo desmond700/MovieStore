@@ -33,7 +33,8 @@
               </div>
               <p class="font-weight-bold mb-1">Overview</p>
               <p><?php echo $movie["Overview"] ?></p>
-              <p class="font-weight-bold">Director</p>
+              <p><b>Director</b><br>
+              <?php echo $movie["FirstName"]." ".$movie["LastName"] ?></p>
               <div class="d-flex w-100 mt-auto ml-auto">
 
                 <form class="d-flex" action="." method="get" id="add_to_cart_form">
